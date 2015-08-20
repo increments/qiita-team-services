@@ -1,0 +1,21 @@
+lib = File.expand_path("../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require "qiita_team_services/version"
+
+Gem::Specification.new do |spec|
+  spec.name          = "qiita_team_services"
+  spec.version       = QiitaTeamServices::VERSION
+  spec.authors       = ["Yuku Takahashi"]
+  spec.email         = ["yuku@qiita.com"]
+  spec.summary       = "Official Qiita:Team Services Integration"
+  spec.homepage      = "https://github.com/increments/qiita-team-services"
+  spec.license       = "MIT"
+
+  spec.files         = `git ls-files -z`.split("\x0")
+  spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "rake", "~> 10.4"
+  spec.add_development_dependency "rspec", "~> 3.3"
+  spec.add_development_dependency "rubocop", "~> 0.33"
+end
