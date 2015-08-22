@@ -1,11 +1,11 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require "qiita_team_services/version"
+require "qiita/team/services/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "qiita_team_services"
-  spec.version       = QiitaTeamServices::VERSION
+  spec.version       = Qiita::Team::Services::VERSION
   spec.authors       = ["Yuku Takahashi"]
   spec.email         = ["yuku@qiita.com"]
   spec.summary       = "Official Qiita:Team Services Integration"

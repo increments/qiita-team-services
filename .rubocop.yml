@@ -7,3 +7,6 @@ Metrics/LineLength:
 # Document classes and non-namespace modules.
 Style/Documentation:
   Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
