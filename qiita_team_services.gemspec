@@ -1,7 +1,14 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require "qiita_team_services"
+module Qiita
+  module Team
+    module Services
+    end
+  end
+end
+
+require "qiita/team/services/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "qiita_team_services"
