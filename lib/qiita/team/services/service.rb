@@ -37,6 +37,7 @@ module Qiita::Team::Services
       private
 
       def inherited(child)
+        super
         all_services << child
       end
 

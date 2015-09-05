@@ -14,6 +14,7 @@ module Qiita::Team::Services
       private
 
       def inherited(child)
+        super
         event_names << child.name.demodulize.underscore.to_sym
       end
     end
