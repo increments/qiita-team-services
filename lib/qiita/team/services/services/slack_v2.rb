@@ -1,3 +1,5 @@
+require "qiita/team/services/service"
+
 module Qiita::Team::Services
   module Services
     class SlackV2 < Service
