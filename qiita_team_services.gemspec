@@ -1,7 +1,7 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require "qiita/team/services/version"
+require "qiita_team_services"
 
 Gem::Specification.new do |spec|
   spec.name          = "qiita_team_services"
@@ -14,6 +14,8 @@ Gem::Specification.new do |spec|
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.require_paths = ["lib"]
+
+  spec.add_dependency "activesupport"
 
   spec.add_development_dependency "rake", "~> 10.4"
   spec.add_development_dependency "rspec", "~> 3.3"

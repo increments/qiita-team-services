@@ -5,4 +5,11 @@ module Qiita
   end
 end
 
+require "qiita/team/services/event"
+require "qiita/team/services/events/article_created"
+require "qiita/team/services/events/article_updated"
+require "qiita/team/services/events/comment_created"
+require "qiita/team/services/events/member_added"
+require "qiita/team/services/events/project_created"
+require "qiita/team/services/events/project_updated"
 require "qiita/team/services/version"
