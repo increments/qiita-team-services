@@ -1,6 +1,9 @@
 module Qiita::Team::Services
   module Services
     class ChatworkV1 < Service
+      define_property :token
+      define_property :room_id
+
       # @param _event [Events::ArticleCreated]
       # @return [void]
       def article_created(_event)

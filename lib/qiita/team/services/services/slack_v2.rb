@@ -1,6 +1,8 @@
 module Qiita::Team::Services
   module Services
     class SlackV2 < Service
+      define_property :webhook_url
+
       # @param _event [Events::ArticleCreated]
       # @return [void]
       def article_created(_event)

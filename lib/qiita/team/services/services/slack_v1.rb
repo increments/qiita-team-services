@@ -3,6 +3,9 @@ module Qiita::Team::Services
     class SlackV1 < Service
       deprecated
 
+      define_property :teamname
+      define_property :integration_token
+
       # @param _event [Events::ArticleCreated]
       # @return [void]
       def article_created(_event)

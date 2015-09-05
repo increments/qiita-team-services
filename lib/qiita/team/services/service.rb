@@ -29,6 +29,11 @@ module Qiita::Team::Services
         public_instance_methods & Event.event_names
       end
 
+      # @return [Array<Property>]
+      def service_properties
+        @service_properties ||= []
+      end
+
       private
 
       def inherited(child)
@@ -40,6 +45,30 @@ module Qiita::Team::Services
       # @param boolean [true, false]
       def deprecated
         @deprecated = true
+      end
+
+      # @param name [Symbol]
+      # @param type [Symbol] :string or :boolean.
+      # @return [void]
+      def define_property(name, type: :string)
+        service_properties << Property.create(name, type)
+        attr_accessor name
+      end
+    end
+
+    # @param hash [Hash{String => Object}] deserialized properties hash.
+    def initialize(hash)
+      self.class.service_properties.map(&:name).each do |name|
+        public_send("#{name}=", hash[name]) if hash.key?(name)
+      end
+    end
+
+    # Serialize the service object.
+    #
+    # @return [Hash{String => Object}] serialized properties.
+    def to_hash
+      self.class.service_properties.map(&:name).each_with_object({}) do |name, hash|
+        hash[name] = public_send(name)
       end
     end
   end
