@@ -18,5 +18,12 @@ module Qiita::Team::Services
         event_names << child.name.demodulize.underscore.to_sym
       end
     end
+
+    attr_reader :resource
+
+    # @param resource [Api::Resources::Base]
+    def initialize(resource)
+      @resource = resource
+    end
   end
 end
