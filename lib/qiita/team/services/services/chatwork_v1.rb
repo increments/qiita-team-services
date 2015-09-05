@@ -8,13 +8,13 @@ module Qiita::Team::Services
 
       # @param _event [Events::ArticleCreated]
       # @return [void]
-      def article_created(_event)
+      def item_created(_event)
         fail NotImplementedError
       end
 
       # @param _event [Events::ArticleUpdated]
       # @return [void]
-      def article_updated(_event)
+      def item_updated(_event)
         fail NotImplementedError
       end
 
