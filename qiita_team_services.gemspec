@@ -27,6 +27,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "faraday", "~> 0.9"
   spec.add_dependency "faraday_middleware", "~> 0.10"
 
+  # Service dependencies
+  spec.add_dependency "hipchat", "~> 1.5.2"
+
   spec.add_development_dependency "rake", "~> 10.4"
   spec.add_development_dependency "rspec", "~> 3.3"
   spec.add_development_dependency "rubocop", "~> 0.33"
