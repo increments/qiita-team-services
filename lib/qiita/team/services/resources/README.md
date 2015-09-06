@@ -3,6 +3,12 @@
 There are several resources in `Qiita::Team::Services::Resources` module.
 They are defined in Qiita core.
 
+- [Team](#team)
+- [User](#team)
+- [Item](#item)
+- [Project](#project)
+- [Comment](#comment)
+
 ## Team
 
 method  | type   | description
