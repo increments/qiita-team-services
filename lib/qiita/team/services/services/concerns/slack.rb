@@ -54,6 +54,18 @@ module Qiita::Team::Services
           )
         end
 
+        # @param event [Events::ItemBecameCoediting]
+        # @return [void]
+        def item_became_coediting(event)
+          fallback = "#{user_link(event.user)} changed #{item_link(event.item)} to coedit mode"
+          send_message(
+            attachments: [
+              fallback: fallback,
+              pretext: fallback,
+            ]
+          )
+        end
+
         # @param event [Events::CommentCreated]
         # @return [void]
         def comment_created(event)
@@ -105,7 +117,37 @@ module Qiita::Team::Services
         # @param event [Events::ProjectUpdated]
         # @return [void]
         def project_updated(event)
-          fallback = "#{user_link(event.user)} created #{project_link(event.project)} project"
+          fallback = "#{user_link(event.user)} updated #{project_link(event.project)} project"
+          send_message(
+            attachments: [
+              fallback: fallback,
+              pretext: fallback,
+              author_name: "@#{event.user.id}",
+              author_link: event.user.url,
+              author_icon: event.user.profile_image_url,
+            ]
+          )
+        end
+
+        # @param event [Events::ProjectArchived]
+        # @return [void]
+        def project_archived(event)
+          fallback = "#{user_link(event.user)} archived #{project_link(event.project)} project"
+          send_message(
+            attachments: [
+              fallback: fallback,
+              pretext: fallback,
+              author_name: "@#{event.user.id}",
+              author_link: event.user.url,
+              author_icon: event.user.profile_image_url,
+            ]
+          )
+        end
+
+        # @param event [Events::ProjectActivated]
+        # @return [void]
+        def project_activated(event)
+          fallback = "#{user_link(event.user)} activated #{project_link(event.project)} project"
           send_message(
             attachments: [
               fallback: fallback,

@@ -14,7 +14,7 @@ module Qiita::Team::Services
       validates :token, presence: true
       validates :room_id, presence: true
 
-      # @param event [Events::ArticleCreated]
+      # @param event [Events::ItemCreated]
       # @return [void]
       def item_created(event)
         send_message <<-EOM.strip_heredoc
@@ -23,11 +23,20 @@ module Qiita::Team::Services
         EOM
       end
 
-      # @param event [Events::ArticleUpdated]
+      # @param event [Events::ItemUpdated]
       # @return [void]
       def item_updated(event)
         send_message <<-EOM.strip_heredoc
         #{event.user.name} updated #{event.item.title}.
+        #{event.item.url}
+        EOM
+      end
+
+      # @param event [Events::ItemBecameCoediting]
+      # @return [void]
+      def item_became_coediting(event)
+        send_message <<-EOM.strip_heredoc
+        #{event.user.name} changed #{event.item.title} to coedit mode.
         #{event.item.url}
         EOM
       end
@@ -61,6 +70,24 @@ module Qiita::Team::Services
       def project_updated(event)
         send_message <<-EOM.strip_heredoc
         #{event.user.name} updated #{event.project.name} project.
+        #{event.project.url}
+        EOM
+      end
+
+      # @param event [Events::ProjectArchived]
+      # @return [void]
+      def project_archived(event)
+        send_message <<-EOM.strip_heredoc
+        #{event.user.name} archived #{event.project.name} project.
+        #{event.project.url}
+        EOM
+      end
+
+      # @param event [Events::ProjectActivated]
+      # @return [void]
+      def project_activated(event)
+        send_message <<-EOM.strip_heredoc
+        #{event.user.name} activated #{event.project.name} project.
         #{event.project.url}
         EOM
       end
