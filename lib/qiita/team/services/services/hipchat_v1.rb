@@ -6,7 +6,7 @@ module Qiita::Team::Services
       define_property :color, default: "yellow"
       define_property :room
       define_property :token
-      define_property :with_notification, type: :boolean
+      define_property :with_notification, default: false, type: :boolean
 
       validates :color, inclusion: %w(yellow red green purple random)
       validates :room, presence: true
