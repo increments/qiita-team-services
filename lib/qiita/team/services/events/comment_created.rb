@@ -1,3 +1,5 @@
+require "active_support/core_ext/module/delegation"
+
 require "qiita/team/services/event"
 
 module Qiita::Team::Services
@@ -24,17 +26,22 @@ module Qiita::Team::Services
     #
     # @example Get author id.
     #
-    #   event.comment.user.id
+    #   event.user.id
     #   #=> "qiitan"
     #
     # @example Get author name.
     #
-    #   event.comment.user.name
+    #   event.user.name
     #   #=> "Mr. Qiitan"
     #
     class CommentCreated < Event
       # @return [Api::Resources::Comment]
       alias_method :comment, :resource
+
+      # User who wrote the comment.
+      #
+      # @return [Api::Resources::User]
+      delegate :user, to: :comment
     end
   end
 end

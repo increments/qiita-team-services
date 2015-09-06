@@ -35,6 +35,13 @@ module Qiita::Team::Services
     class ProjectUpdated < Event
       # @return [Api::Resources::Project]
       alias_method :project, :resource
+
+      # User who updated the project.
+      #
+      # @return [Api::Resources::User]
+      def user
+        project.editor
+      end
     end
   end
 end

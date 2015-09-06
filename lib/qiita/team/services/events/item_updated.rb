@@ -42,15 +42,15 @@ module Qiita::Team::Services
     #   event.item.updated_at
     #   #=> 2000-01-02T00:00:00+00:00
     #
-    # @example Get author id.
+    # @example Get editor id.
     #
-    #   event.item.user.id
-    #   #=> "qiitan"
+    #   event.user.id
+    #   #=> "yaotti"
     #
-    # @example Get author name.
+    # @example Get editor name.
     #
-    #   event.item.user.name
-    #   #=> "Mr. Qiitan"
+    #   event.user.name
+    #   #=> "Yaotti"
     #
     # @example Get tag names.
     #
@@ -60,6 +60,13 @@ module Qiita::Team::Services
     class ItemUpdated < Event
       # @return [Api::Resources::Item]
       alias_method :item, :resource
+
+      # User who updated the item.
+      #
+      # @return [Api::Resources::User]
+      def user
+        item.editor
+      end
     end
   end
 end

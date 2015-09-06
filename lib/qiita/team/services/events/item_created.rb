@@ -41,12 +41,12 @@ module Qiita::Team::Services
     #
     # @example Get author id.
     #
-    #   event.item.user.id
+    #   event.user.id
     #   #=> "qiitan"
     #
     # @example Get author name.
     #
-    #   event.item.user.name
+    #   event.user.name
     #   #=> "Mr. Qiitan"
     #
     # @example Get tag names.
@@ -57,6 +57,11 @@ module Qiita::Team::Services
     class ItemCreated < Event
       # @return [Api::Resources::Item]
       alias_method :item, :resource
+
+      # User who created the item.
+      #
+      # @return [Api::Resources::User]
+      delegate :user, to: :item
     end
   end
 end

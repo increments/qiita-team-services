@@ -1,3 +1,5 @@
+require "active_support/core_ext/module/delegation"
+
 require "qiita/team/services/event"
 
 module Qiita::Team::Services
@@ -30,6 +32,11 @@ module Qiita::Team::Services
     class ProjectCreated < Event
       # @return [Api::Resources::Project]
       alias_method :project, :resource
+
+      # User who created the project.
+      #
+      # @return [Api::Resources::User]
+      delegate :user, to: :project
     end
   end
 end
