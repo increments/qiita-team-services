@@ -1,8 +1,8 @@
-require "qiita/team/services/event"
+require "qiita/team/services/events/base"
 
 module Qiita::Team::Services
   module Events
-    class ItemUpdated < Event
+    class ItemUpdated < Base
       # @return [Resources::Item]
       alias_method :item, :resource
 

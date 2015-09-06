@@ -1,9 +1,9 @@
-require "qiita/team/services/property"
+require "qiita/team/services/properties/base"
 
 module Qiita::Team::Services
   module Properties
-    class StringProperty < Property
-      # @note Implement Property#default.
+    class StringProperty < Base
+      # @note Implement {Base#default}.
       def default
         @default.nil? ? "" : @default
       end

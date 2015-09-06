@@ -1,9 +1,9 @@
-require "qiita/team/services/service"
+require "qiita/team/services/services/base"
 require "qiita/team/services/services/concerns/slack"
 
 module Qiita::Team::Services
   module Services
-    class SlackV2 < Service
+    class SlackV2 < Base
       include Concerns::Slack
 
       define_property :webhook_url

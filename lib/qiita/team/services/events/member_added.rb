@@ -1,8 +1,8 @@
-require "qiita/team/services/event"
+require "qiita/team/services/events/base"
 
 module Qiita::Team::Services
   module Events
-    class MemberAdded < Event
+    class MemberAdded < Base
       # New team member.
       #
       # @return [Resources::User]

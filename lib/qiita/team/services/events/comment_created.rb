@@ -1,10 +1,10 @@
 require "active_support/core_ext/module/delegation"
 
-require "qiita/team/services/event"
+require "qiita/team/services/events/base"
 
 module Qiita::Team::Services
   module Events
-    class CommentCreated < Event
+    class CommentCreated < Base
       # @return [Resources::Comment]
       alias_method :comment, :resource
 

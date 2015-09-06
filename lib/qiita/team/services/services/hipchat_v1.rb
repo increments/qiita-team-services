@@ -1,10 +1,10 @@
 require "hipchat"
 
-require "qiita/team/services/service"
+require "qiita/team/services/services/base"
 
 module Qiita::Team::Services
   module Services
-    class HipchatV1 < Service
+    class HipchatV1 < Base
       define_property :color, default: "yellow"
       define_property :from, default: "Qiita:Team"
       define_property :room

@@ -1,9 +1,9 @@
-require "qiita/team/services/service"
+require "qiita/team/services/services/base"
 require "qiita/team/services/services/concerns/slack"
 
 module Qiita::Team::Services
   module Services
-    class SlackV1 < Service
+    class SlackV1 < Base
       deprecated
 
       include Concerns::Slack

@@ -1,11 +1,11 @@
 require "active_support/core_ext/string/strip"
 
-require "qiita/team/services/service"
+require "qiita/team/services/services/base"
 require "qiita/team/services/services/concerns/http_client"
 
 module Qiita::Team::Services
   module Services
-    class ChatworkV1 < Service
+    class ChatworkV1 < Base
       include Concerns::HttpClient
 
       define_property :token
