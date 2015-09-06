@@ -3,7 +3,7 @@ require "qiita/team/services/service"
 module Qiita::Team::Services
   module Services
     class HipchatV1 < Service
-      define_property :color
+      define_property :color, default: "yellow"
       define_property :room
       define_property :token
       define_property :with_notification, type: :boolean

@@ -50,17 +50,22 @@ module Qiita::Team::Services
 
       # @param name [Symbol]
       # @param type [Symbol] :string or :boolean.
+      # @param default [String, true, false]
       # @return [void]
-      def define_property(name, type: :string)
-        service_properties << Property.create(name, type)
+      def define_property(name, type: :string, default: nil)
+        service_properties << Property.create(name, type, default)
         attr_accessor name
       end
     end
 
     # @param hash [Hash{String => Object}] deserialized properties hash.
     def initialize(hash)
-      self.class.service_properties.map(&:name).each do |name|
-        public_send("#{name}=", hash[name]) if hash.key?(name)
+      self.class.service_properties.each do |property|
+        if hash.key?(property.name)
+          public_send("#{property.name}=", hash[property.name])
+        else
+          public_send("#{property.name}=", property.default)
+        end
       end
     end
 
