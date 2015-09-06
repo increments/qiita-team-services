@@ -75,6 +75,15 @@ module Qiita::Team::Services
           hash[name] = public_send(name)
         end
       end
+
+      # @return event [Events::Base]
+      def handle(event)
+        if respond_to?(event.class.event_name)
+          public_send(event.class.event_name, event)
+        else
+          fail NotImplementedError
+        end
+      end
     end
   end
 end

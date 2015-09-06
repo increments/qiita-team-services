@@ -7,11 +7,16 @@ module Qiita::Team::Services
     # @abstract
     class Base
       class << self
+        # @return [Symbol]
+        def event_name
+          @event_name ||= name.demodulize.underscore.to_sym
+        end
+
         private
 
         def inherited(child)
           super
-          Events.event_names << child.name.demodulize.underscore.to_sym
+          Events.event_names << child.event_name
         end
       end
 
