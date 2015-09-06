@@ -55,12 +55,12 @@ module Qiita::Team::Services
     #   #=> ["example"]
     #
     class ItemCreated < Event
-      # @return [Api::Resources::Item]
+      # @return [Resources::Item]
       alias_method :item, :resource
 
       # User who created the item.
       #
-      # @return [Api::Resources::User]
+      # @return [Resources::User]
       delegate :user, to: :item
     end
   end

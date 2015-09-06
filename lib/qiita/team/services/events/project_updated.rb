@@ -33,12 +33,12 @@ module Qiita::Team::Services
     #   #=> 2000-01-01T00:00:00+00:00
     #
     class ProjectUpdated < Event
-      # @return [Api::Resources::Project]
+      # @return [Resources::Project]
       alias_method :project, :resource
 
       # User who updated the project.
       #
-      # @return [Api::Resources::User]
+      # @return [Resources::User]
       def user
         project.editor
       end

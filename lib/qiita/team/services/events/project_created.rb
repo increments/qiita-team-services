@@ -30,12 +30,12 @@ module Qiita::Team::Services
     #   #=> 2000-01-01T00:00:00+00:00
     #
     class ProjectCreated < Event
-      # @return [Api::Resources::Project]
+      # @return [Resources::Project]
       alias_method :project, :resource
 
       # User who created the project.
       #
-      # @return [Api::Resources::User]
+      # @return [Resources::User]
       delegate :user, to: :project
     end
   end

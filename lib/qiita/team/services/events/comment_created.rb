@@ -35,13 +35,18 @@ module Qiita::Team::Services
     #   #=> "Mr. Qiitan"
     #
     class CommentCreated < Event
-      # @return [Api::Resources::Comment]
+      # @return [Resources::Comment]
       alias_method :comment, :resource
 
       # User who wrote the comment.
       #
-      # @return [Api::Resources::User]
+      # @return [Resources::User]
       delegate :user, to: :comment
+
+      # Commented item.
+      #
+      # @return [Resources::Item]
+      delegate :item, to: :comment
     end
   end
 end

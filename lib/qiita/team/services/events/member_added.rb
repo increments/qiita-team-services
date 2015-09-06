@@ -2,19 +2,19 @@ require "qiita/team/services/event"
 
 module Qiita::Team::Services
   module Events
-    # @example Get user id.
+    # @example Get added user id.
     #
-    #   event.user.id
+    #   event.member.id
     #   #=> "qiitan"
     #
-    # @example Get user name.
+    # @example Get added user name.
     #
-    #   event.user.name
+    #   event.member.name
     #   #=> "Mr. Qiitan"
     #
     class MemberAdded < Event
-      # @return [Api::Resources::User]
-      alias_method :user, :resource
+      # @return [Resources::User]
+      alias_method :member, :resource
     end
   end
 end

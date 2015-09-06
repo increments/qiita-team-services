@@ -58,12 +58,12 @@ module Qiita::Team::Services
     #   #=> ["example"]
     #
     class ItemUpdated < Event
-      # @return [Api::Resources::Item]
+      # @return [Resources::Item]
       alias_method :item, :resource
 
       # User who updated the item.
       #
-      # @return [Api::Resources::User]
+      # @return [Resources::User]
       def user
         item.editor
       end
