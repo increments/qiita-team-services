@@ -8,6 +8,9 @@ module Qiita::Team::Services
       define_property :teamname
       define_property :integration_token
 
+      validates :teamname, presence: true
+      validates :integration_token, presence: true
+
       # @param _event [Events::ArticleCreated]
       # @return [void]
       def item_created(_event)

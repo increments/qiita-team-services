@@ -5,6 +5,8 @@ module Qiita::Team::Services
     class SlackV2 < Service
       define_property :webhook_url
 
+      validates :webhook_url, presence: true
+
       # @param _event [Events::ArticleCreated]
       # @return [void]
       def item_created(_event)

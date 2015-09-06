@@ -6,6 +6,9 @@ module Qiita::Team::Services
       define_property :token
       define_property :room_id
 
+      validates :token, presence: true
+      validates :room_id, presence: true
+
       # @param _event [Events::ArticleCreated]
       # @return [void]
       def item_created(_event)

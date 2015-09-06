@@ -1,6 +1,10 @@
+require "active_model"
+
 module Qiita::Team::Services
   # @abstract
   class Service
+    include ActiveModel::Validations
+
     class << self
       # @return [true, false]
       def deprecated?

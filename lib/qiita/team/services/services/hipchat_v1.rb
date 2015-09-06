@@ -8,6 +8,11 @@ module Qiita::Team::Services
       define_property :token
       define_property :with_notification, type: :boolean
 
+      validates :color, inclusion: %w(yellow red green purple random)
+      validates :room, presence: true
+      validates :token, presence: true
+      validates :with_notification, inclusion: [true, false]
+
       # @param _event [Events::ArticleCreated]
       # @return [void]
       def item_created(_event)
