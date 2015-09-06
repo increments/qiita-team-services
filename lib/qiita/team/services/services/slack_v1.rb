@@ -14,40 +14,11 @@ module Qiita::Team::Services
       validates :teamname, presence: true
       validates :integration_token, presence: true
 
-      # @param _event [Events::ArticleCreated]
-      # @return [void]
-      def item_created(_event)
-        fail NotImplementedError
-      end
+      private
 
-      # @param _event [Events::ArticleUpdated]
-      # @return [void]
-      def item_updated(_event)
-        fail NotImplementedError
-      end
-
-      # @param _event [Events::CommentCreated]
-      # @return [void]
-      def comment_created(_event)
-        fail NotImplementedError
-      end
-
-      # @param _event [Events::MemberAdded]
-      # @return [void]
-      def member_added(_event)
-        fail NotImplementedError
-      end
-
-      # @param _event [Events::ProjectCreated]
-      # @return [void]
-      def project_created(_event)
-        fail NotImplementedError
-      end
-
-      # @param _event [Events::ProjectUpdated]
-      # @return [void]
-      def project_updated(_event)
-        fail NotImplementedError
+      # @note Implement Concerns::HttpClient#url.
+      def url
+        "https://#{teamname}.slack.com/services/hooks/incoming-webhook?token=#{integration_token}"
       end
     end
   end
