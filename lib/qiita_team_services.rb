@@ -6,9 +6,12 @@ module Qiita
 end
 
 require "qiita/team/services/events/comment_created"
+require "qiita/team/services/events/item_became_coediting"
 require "qiita/team/services/events/item_created"
 require "qiita/team/services/events/item_updated"
 require "qiita/team/services/events/member_added"
+require "qiita/team/services/events/project_activated"
+require "qiita/team/services/events/project_archived"
 require "qiita/team/services/events/project_created"
 require "qiita/team/services/events/project_updated"
 require "qiita/team/services/properties/boolean_property"
