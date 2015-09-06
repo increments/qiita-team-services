@@ -1,9 +1,12 @@
 require "qiita/team/services/service"
+require "qiita/team/services/services/concerns/slack"
 
 module Qiita::Team::Services
   module Services
     class SlackV1 < Service
       deprecated
+
+      include Concerns::Slack
 
       define_property :teamname
       define_property :integration_token
