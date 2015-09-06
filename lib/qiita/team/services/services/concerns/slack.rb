@@ -38,7 +38,7 @@ module Qiita::Team::Services
               title: event.item.title,
               title_link: event.item.url,
               text: Slacken.translate(event.item.rendered_body),
-            ]
+            ],
           )
         end
 
@@ -50,7 +50,7 @@ module Qiita::Team::Services
             attachments: [
               fallback: fallback,
               pretext: fallback,
-            ]
+            ],
           )
         end
 
@@ -62,7 +62,7 @@ module Qiita::Team::Services
             attachments: [
               fallback: fallback,
               pretext: fallback,
-            ]
+            ],
           )
         end
 
@@ -78,12 +78,12 @@ module Qiita::Team::Services
           send_message(
             attachments: [
               fallback: fallback,
-              pretext:fallback,
+              pretext: fallback,
               author_name: "@#{event.user.id}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
-              text: Slacken.translate(event.comment.rendered_body)
-            ]
+              text: Slacken.translate(event.comment.rendered_body),
+            ],
           )
         end
 
@@ -95,7 +95,7 @@ module Qiita::Team::Services
             attachments: [
               fallback: fallback,
               pretext: fallback,
-            ]
+            ],
           )
         end
 
@@ -110,7 +110,7 @@ module Qiita::Team::Services
               author_name: "@#{event.user.id}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
-            ]
+            ],
           )
         end
 
@@ -125,7 +125,7 @@ module Qiita::Team::Services
               author_name: "@#{event.user.id}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
-            ]
+            ],
           )
         end
 
@@ -140,7 +140,7 @@ module Qiita::Team::Services
               author_name: "@#{event.user.id}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
-            ]
+            ],
           )
         end
 
@@ -155,7 +155,7 @@ module Qiita::Team::Services
               author_name: "@#{event.user.id}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
-            ]
+            ],
           )
         end
 

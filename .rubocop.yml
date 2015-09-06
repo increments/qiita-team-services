@@ -10,3 +10,18 @@ Style/Documentation:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 20
+
+Style/TrailingComma:
+  EnforcedStyleForMultiline: comma
