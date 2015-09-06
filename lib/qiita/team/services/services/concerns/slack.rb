@@ -5,7 +5,7 @@ module Qiita::Team::Services
   module Services
     module Concerns
       # Send richly-formatted messages to Slack.
-      # Override {#url} to implement HttpClient.
+      # Override {HttpClient#url} to implement HttpClient.
       #
       # @see https://api.slack.com/docs/attachments
       module Slack

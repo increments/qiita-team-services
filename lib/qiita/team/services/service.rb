@@ -47,7 +47,7 @@ module Qiita::Team::Services
 
       # Mark the service as deprecated.
       #
-      # @param boolean [true, false]
+      # @return [void]
       def deprecated
         @deprecated = true
       end
