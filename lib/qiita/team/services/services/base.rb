@@ -27,6 +27,11 @@ module Qiita::Team::Services
           @service_properties ||= []
         end
 
+        # @return [Array<String>]
+        def property_names
+          service_properties.map(&:name)
+        end
+
         # @return [String]
         def service_type
           name.demodulize.underscore
