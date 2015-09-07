@@ -52,7 +52,7 @@ module Qiita::Team::Services
 
       # @param event [Events::MemberAdded]
       # @return [void]
-      def member_added(event)
+      def team_member_added(event)
         send_message("#{event.member.name} is added to #{event.team.name} team.")
       end
 

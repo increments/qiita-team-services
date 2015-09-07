@@ -89,7 +89,7 @@ module Qiita::Team::Services
 
         # @param event [Events::MemberAdded]
         # @return [void]
-        def member_added(event)
+        def team_member_added(event)
           fallback = "#{user_link(event.member)} is added to the #{team_link(event.team)} team"
           send_message(
             attachments: [

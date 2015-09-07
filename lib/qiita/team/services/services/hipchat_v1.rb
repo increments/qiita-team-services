@@ -46,7 +46,7 @@ module Qiita::Team::Services
 
       # @param event [Events::MemberAdded]
       # @return [void]
-      def member_added(event)
+      def team_member_added(event)
         send_message("#{user_link(event.member)} was added to #{event.team.name} team.")
       end
 
