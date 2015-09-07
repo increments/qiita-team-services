@@ -14,6 +14,11 @@ module Qiita::Team::Services
       validates :token, presence: true
       validates :room_id, presence: true
 
+      # @note Override {Services::Base.service_name}.
+      def self.service_name
+        "ChatWork"
+      end
+
       # @param event [Events::ItemCreated]
       # @return [void]
       def item_created(event)

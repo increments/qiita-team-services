@@ -17,6 +17,11 @@ module Qiita::Team::Services
       validates :token, presence: true
       validates :with_notification, inclusion: [true, false]
 
+      # @note Override {Services::Base.service_name}.
+      def self.service_name
+        "HipChat"
+      end
+
       # @param event [Events::ItemCreated]
       # @return [void]
       def item_created(event)

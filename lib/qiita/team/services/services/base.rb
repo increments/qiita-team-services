@@ -32,6 +32,11 @@ module Qiita::Team::Services
           name.demodulize.underscore
         end
 
+        # @return [String]
+        def service_name
+          fail NotImplementedError
+        end
+
         private
 
         def inherited(child)
@@ -65,6 +70,13 @@ module Qiita::Team::Services
             public_send("#{property.name}=", property.default)
           end
         end
+      end
+
+      # The service name.
+      #
+      # @return [String]
+      def name
+        self.class.service_name
       end
 
       # Serialize the service object.

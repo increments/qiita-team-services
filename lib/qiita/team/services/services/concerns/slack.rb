@@ -24,6 +24,13 @@ module Qiita::Team::Services
           validates :icon_emoji, format: { with: ICON_EMOJI_FORMAT }, allow_blank: true
         end
 
+        module ClassMethods
+          # @note Override {Services::Base.service_name}.
+          def service_name
+            "Slack"
+          end
+        end
+
         # @param event [Events::ItemCreated]
         # @return [void]
         def item_created(event)
