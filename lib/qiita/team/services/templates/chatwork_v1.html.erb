@@ -1,0 +1,25 @@
+<div class="form-group">
+  <%= label :service, "properties_token", "#{service.class.human_attribute_name(:token)} *", class: "control-label" %>
+  <%= text_field_tag "service[properties][token]", service.token, class: "form-control" %>
+  <% if service.errors.key?(:token) %>
+    <br/>
+    <div class="alert alert-warning">
+      <% service.errors.full_messages_for(:token).each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <%= label :service, "properties_room_id", "#{service.class.human_attribute_name(:room_id)} *", class: "control-label" %>
+  <%= text_field_tag "service[properties][room_id]", service.room_id, class: "form-control" %>
+  <% if service.errors.key?(:room_id) %>
+    <br/>
+    <div class="alert alert-warning">
+      <% service.errors.full_messages_for(:room_id).each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

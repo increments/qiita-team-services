@@ -1,0 +1,41 @@
+<div class="form-group">
+  <%= label :service, "properties_webhook_url", "#{service.class.human_attribute_name(:webhook_url)} *", class: "control-label" %>
+  <%= text_field_tag "service[properties][webhook_url]", service.webhook_url, class: "form-control" %>
+  <% if service.errors.key?(:webhook_url) %>
+    <br/>
+    <div class="alert alert-warning">
+      <% service.errors.full_messages_for(:webhook_url).each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <%= label :service, "properties_username", "#{service.class.human_attribute_name(:username)} *", class: "control-label" %>
+  <%= text_field_tag "service[properties][username]", service.username, class: "form-control" %>
+  <% if service.errors.key?(:username) %>
+    <br/>
+    <div class="alert alert-warning">
+      <% service.errors.full_messages_for(:username).each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <%= label :service, "properties_icon_emoji", "#{service.class.human_attribute_name(:icon_emoji)}", class: "control-label" %>
+  <%= text_field_tag "service[properties][icon_emoji]", service.icon_emoji, class: "form-control" %>
+  <% if service.errors.key?(:icon_emoji) %>
+    <br/>
+    <div class="alert alert-warning">
+      <% service.errors.full_messages_for(:icon_emoji).each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="help-block">
+    <%= I18n.t("qiita.team.services.templates.slack_v2.icon_emoji_help_block_html") %>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+en:
+  qiita:
+    team:
+      services:
+        templates:
+          slack_v2:
+            icon_emoji_help_block_html:
+              Any Slack icons are available here (eg <code>:shipit:</code>). <br/>
+              Qiita:Team icon is used by default.
+        services:
+          chatwork_v1:
+            room_id: Room ID
+            token: Token
+          hipchat_v1:
+            color: Color
+            from: From
+            room: Room
+            token: Token
+            with_notification: Notify
+          slack_v1:
+            icon_emoji: Icon emoji
+            integration_token: Integration token
+            teamname: Teamname
+            username: Username
+          slack_v2:
+            icon_emoji: Icon emoji
+            username: Username
+            webhook_url: Webhook URL

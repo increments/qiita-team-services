@@ -1,0 +1,28 @@
+ja:
+  qiita:
+    team:
+      services:
+        templates:
+          slack_v2:
+            icon_emoji_help_block_html: |-
+              Slackに登録されている全てのアイコンが指定可能です（例 <code>:shipit:</code>）。<br/>
+              省略した場合、Qiita:Teamのアイコンが使われます。
+        services:
+          chatwork_v1:
+            room_id: ルームID
+            token: トークン
+          hipchat_v1:
+            color: 色
+            from: 送信元
+            room: ルーム
+            token: トークン
+            with_notification: 通知する
+          slack_v1:
+            icon_emoji: ユーザアイコン絵文字
+            integration_token: トークン
+            teamname: チーム名
+            username: ユーザ名
+          slack_v2:
+            icon_emoji: ユーザアイコン絵文字
+            username: ユーザ名
+            webhook_url: Webhook URL

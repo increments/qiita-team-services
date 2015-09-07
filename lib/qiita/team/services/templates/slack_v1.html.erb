@@ -1,0 +1,54 @@
+<div class="form-group">
+  <%= label :service, "properties_teamname", "#{service.class.human_attribute_name(:teamname)} *", class: "control-label" %>
+  <%= text_field_tag "service[properties][teamname]", service.teamname, class: "form-control" %>
+  <% if service.errors.key?(:teamname) %>
+    <br/>
+    <div class="alert alert-warning">
+      <% service.errors.full_messages_for(:teamname).each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <%= label :service, "properties_integration_token", "#{service.class.human_attribute_name(:integration_token)} *", class: "control-label" %>
+  <%= text_field_tag "service[properties][integration_token]", service.integration_token, class: "form-control" %>
+  <% if service.errors.key?(:integration_token) %>
+    <br/>
+    <div class="alert alert-warning">
+      <% service.errors.full_messages_for(:integration_token).each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <%= label :service, "properties_username", "#{service.class.human_attribute_name(:username)} *", class: "control-label" %>
+  <%= text_field_tag "service[properties][username]", service.username, class: "form-control" %>
+  <% if service.errors.key?(:username) %>
+    <br/>
+    <div class="alert alert-warning">
+      <% service.errors.full_messages_for(:username).each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="form-group">
+  <%= label :service, "properties_icon_emoji", "#{service.class.human_attribute_name(:icon_emoji)}", class: "control-label" %>
+  <%= text_field_tag "service[properties][icon_emoji]", service.icon_emoji, class: "form-control" %>
+  <% if service.errors.key?(:icon_emoji) %>
+    <br/>
+    <div class="alert alert-warning">
+      <% service.errors.full_messages_for(:icon_emoji).each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="help-block">
+    <%= I18n.t("qiita.team.services.templates.slack_v2.icon_emoji_help_block_html") %>
+  </div>
+</div>

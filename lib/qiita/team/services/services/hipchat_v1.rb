@@ -5,13 +5,15 @@ require "qiita/team/services/services/base"
 module Qiita::Team::Services
   module Services
     class HipchatV1 < Base
+      AVAILABLE_COLORS = %w(yellow red green purple random).freeze
+
       define_property :color, default: "yellow"
       define_property :from, default: "Qiita:Team"
       define_property :room
       define_property :token
       define_property :with_notification, default: false, type: :boolean
 
-      validates :color, inclusion: %w(yellow red green purple random)
+      validates :color, inclusion: AVAILABLE_COLORS
       validates :from, presence: true
       validates :room, presence: true
       validates :token, presence: true

@@ -1,3 +1,5 @@
+require "erb"
+
 require "active_model"
 require "active_support/inflector"
 
@@ -42,6 +44,17 @@ module Qiita::Team::Services
           fail NotImplementedError
         end
 
+        # @param attr [String]
+        # @return [String]
+        def human_attribute_name(attr, _options = {})
+          I18n.t("qiita.team.services.services.#{service_type}.#{attr}")
+        end
+
+        # @return [String]
+        def render_form(binding)
+          ERB.new(form_template).result(binding)
+        end
+
         private
 
         def inherited(child)
@@ -63,6 +76,12 @@ module Qiita::Team::Services
         def define_property(name, type: :string, default: nil)
           service_properties << Properties.create(name, type, default)
           attr_accessor name
+        end
+
+        # @param lang [String] :en or :ja
+        # @return [String]
+        def form_template
+          File.read(File.expand_path("../../templates/#{service_type}.html.erb", __FILE__))
         end
       end
 
@@ -100,6 +119,14 @@ module Qiita::Team::Services
         else
           fail NotImplementedError
         end
+      end
+
+      # Returns whether or not this record will be destroyed as part of
+      # the parents save transaction.
+      #
+      # @note Override ActiveRecord::AutosaveAssociation#marked_for_destruction?.
+      def marked_for_destruction?
+        false
       end
     end
   end
