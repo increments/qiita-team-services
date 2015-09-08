@@ -178,7 +178,7 @@ module Qiita::Team::Services
 
         # @param request_body [Hash]
         # @return [void]
-        def send_request(request_body)
+        def send_message(request_body)
           http_post(user_hash.merge(request_body))
         end
 
