@@ -24,6 +24,11 @@ module Qiita::Team::Services
         "HipChat"
       end
 
+      # @return [void]
+      def ping
+        send_message "Test message sent from Qiita:Team"
+      end
+
       # @param event [Events::ItemCreated]
       # @return [void]
       def item_created(event)

@@ -1,6 +1,7 @@
 require "erb"
 
 require "active_model"
+require "active_support/core_ext/module/delegation"
 require "active_support/inflector"
 
 require "qiita/team/services/services"
@@ -15,6 +16,11 @@ module Qiita::Team::Services
         # @return [true, false]
         def deprecated?
           @deprecated == true
+        end
+
+        # @return [true, false]
+        def pingable?
+          public_instance_methods.include?(:ping)
         end
 
         # List of implemented event names.
@@ -84,6 +90,8 @@ module Qiita::Team::Services
           File.read(File.expand_path("../../templates/#{service_type}.html.erb", __FILE__))
         end
       end
+
+      delegate :deprecated?, :pingable?, to: :class
 
       # @param hash [Hash{String => Object}] deserialized properties hash.
       def initialize(hash)

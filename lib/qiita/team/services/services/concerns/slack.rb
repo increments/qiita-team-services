@@ -31,6 +31,12 @@ module Qiita::Team::Services
           end
         end
 
+        # @return [void]
+        def ping
+          faillback = "Test message sent from Qiita:Team"
+          send_message(attachments: [fallback: fallback, pretext: fallback])
+        end
+
         # @param event [Events::ItemCreated]
         # @return [void]
         def item_created(event)
