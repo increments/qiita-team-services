@@ -1,4 +1,6 @@
 require "active_support/concern"
+require "slacken"
+
 require "qiita/team/services/services/concerns/http_client"
 
 module Qiita::Team::Services

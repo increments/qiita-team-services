@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
 
   # Service dependencies
   spec.add_dependency "hipchat", "~> 1.5.2"
+  spec.add_dependency "slacken", "~> 0.1.3"
 
   spec.add_development_dependency "rake", "~> 10.4"
   spec.add_development_dependency "rspec", "~> 3.3"
