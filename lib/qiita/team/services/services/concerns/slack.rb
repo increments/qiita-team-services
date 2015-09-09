@@ -26,7 +26,7 @@ module Qiita::Team::Services
           validates :icon_emoji, format: { with: ICON_EMOJI_FORMAT }, allow_blank: true
         end
 
-        module ClassMethods
+        class_methods do
           # @note Override {Services::Base.service_name}.
           def service_name
             "Slack"
@@ -35,7 +35,7 @@ module Qiita::Team::Services
 
         # @return [void]
         def ping
-          faillback = "Test message sent from Qiita:Team"
+          fallback = "Test message sent from Qiita:Team"
           send_message(attachments: [fallback: fallback, pretext: fallback])
         end
 
