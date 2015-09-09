@@ -198,7 +198,7 @@ module Qiita::Team::Services
           if icon_emoji.blank?
             { username: username, icon_url: DEFAULT_ICON_URL }
           else
-            { username: username, icon_emoji: icon }
+            { username: username, icon_emoji: icon_emoji }
           end
         end
 
