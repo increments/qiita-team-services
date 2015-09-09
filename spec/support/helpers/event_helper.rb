@@ -8,20 +8,25 @@ module Qiita::Team::Services
       {
         comment: [
           :created,
+          :updated,
+          :destroyed,
         ],
         item: [
           :became_coediting,
           :created,
           :updated,
+          :destroyed,
         ],
         project: [
           :activated,
           :archived,
           :created,
           :updated,
+          :destroyed,
         ],
         team_member: [
           :added,
+          :removed,
         ],
       }.each_pair do |resource_name, action_names|
         action_names.each do |action_name|
