@@ -20,7 +20,6 @@ module Qiita::Team::Services
 
       included do
         shared_examples "Slack services" do
-
           describe ".service_name" do
             subject do
               described_class.service_name

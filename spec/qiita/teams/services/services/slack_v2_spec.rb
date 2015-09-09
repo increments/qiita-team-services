@@ -6,7 +6,7 @@ describe Qiita::Team::Services::Services::SlackV2 do
   shared_context "Delivery success" do
     before do
       stubs = get_http_client_stub(service)
-      stubs.post(webhook_url) do |env|
+      stubs.post(webhook_url) do |_env|
         [200, { "Content-Type" => "application/json" }, { message_id: 1 }]
       end
     end
@@ -15,7 +15,7 @@ describe Qiita::Team::Services::Services::SlackV2 do
   shared_context "Delivery fail" do
     before do
       stubs = get_http_client_stub(service)
-      stubs.post(webhook_url) do |env|
+      stubs.post(webhook_url) do |_env|
         [400, {}, ""]
       end
     end

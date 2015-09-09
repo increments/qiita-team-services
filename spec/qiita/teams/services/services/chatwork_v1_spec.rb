@@ -18,7 +18,7 @@ describe Qiita::Team::Services::Services::ChatworkV1 do
   shared_context "Delivery success" do
     before do
       stubs = get_http_client_stub(service)
-      stubs.post("/v1/rooms/#{room_id}/messages") do |env|
+      stubs.post("/v1/rooms/#{room_id}/messages") do |_env|
         [200, { "Content-Type" => "application/json" }, { message_id: 1 }]
       end
     end
@@ -27,7 +27,7 @@ describe Qiita::Team::Services::Services::ChatworkV1 do
   shared_context "Delivery fail" do
     before do
       stubs = get_http_client_stub(service)
-      stubs.post("/v1/rooms/#{room_id}/messages") do |env|
+      stubs.post("/v1/rooms/#{room_id}/messages") do |_env|
         [400, {}, ""]
       end
     end

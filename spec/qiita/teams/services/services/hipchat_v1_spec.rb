@@ -88,7 +88,7 @@ describe Qiita::Team::Services::Services::HipchatV1 do
         from,
         a_kind_of(String),
         color: color,
-        notify: with_notification
+        notify: with_notification,
       ).once
       subject
     end
@@ -117,7 +117,7 @@ describe Qiita::Team::Services::Services::HipchatV1 do
           from,
           a_kind_of(String),
           color: color,
-          notify: with_notification
+          notify: with_notification,
         ).once
         subject
       end
