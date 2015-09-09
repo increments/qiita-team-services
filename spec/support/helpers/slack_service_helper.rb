@@ -1,5 +1,7 @@
 require "active_support/concern"
 
+require "support/helpers/event_helper"
+
 module Qiita::Team::Services
   module Helpers
     module SlackServiceHelper
