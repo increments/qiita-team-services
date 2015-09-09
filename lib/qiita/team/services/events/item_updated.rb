@@ -3,12 +3,12 @@ require "qiita/team/services/events/base"
 module Qiita::Team::Services
   module Events
     class ItemUpdated < Base
-      # @return [Resources::Item]
+      # @return [Qiita::Team::Services::Resources::Item]
       alias_method :item, :resource
 
       # User who updated the item.
       #
-      # @return [Resources::User]
+      # @return [Qiita::Team::Services::Resources::User]
       def user
         item.editor
       end

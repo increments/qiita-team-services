@@ -5,7 +5,7 @@ module Qiita::Team::Services
     class TeamMemberAdded < Base
       # New team member.
       #
-      # @return [Resources::User]
+      # @return [Qiita::Team::Services::Resources::User]
       alias_method :member, :resource
     end
   end

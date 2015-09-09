@@ -30,7 +30,7 @@ module Qiita::Team::Services
           public_instance_methods & Events.event_names
         end
 
-        # @return [Array<Properties::Base>]
+        # @return [Array<Qiita::Team::Services::Properties::Base>]
         def service_properties
           @service_properties ||= []
         end
@@ -119,7 +119,7 @@ module Qiita::Team::Services
         end
       end
 
-      # @param event [Events::Base]
+      # @param event [Qiita::Team::Services::Events::Base]
       # @return [void]
       def handle(event)
         if respond_to?(event.class.event_name)

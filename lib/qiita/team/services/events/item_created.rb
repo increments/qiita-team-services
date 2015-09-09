@@ -5,12 +5,12 @@ require "qiita/team/services/events/base"
 module Qiita::Team::Services
   module Events
     class ItemCreated < Base
-      # @return [Resources::Item]
+      # @return [Qiita::Team::Services::Resources::Item]
       alias_method :item, :resource
 
       # User who created the item.
       #
-      # @return [Resources::User]
+      # @return [Qiita::Team::Services::Resources::User]
       delegate :user, to: :item
     end
   end

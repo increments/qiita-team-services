@@ -5,17 +5,17 @@ require "qiita/team/services/events/base"
 module Qiita::Team::Services
   module Events
     class CommentCreated < Base
-      # @return [Resources::Comment]
+      # @return [Qiita::Team::Services::Resources::Comment]
       alias_method :comment, :resource
 
       # User who wrote the comment.
       #
-      # @return [Resources::User]
+      # @return [Qiita::Team::Services::Resources::User]
       delegate :user, to: :comment
 
       # Commented item.
       #
-      # @return [Resources::Item]
+      # @return [Qiita::Team::Services::Resources::Item]
       delegate :item, to: :comment
     end
   end

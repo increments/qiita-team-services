@@ -22,24 +22,24 @@ module Qiita::Team::Services
 
       # Created/updated resource object.
       #
-      # @return [Resources::Base]
+      # @return [Qiita::Team::Services::Resources::Base]
       attr_reader :resource
 
-      # @param resource [Resources::Base]
+      # @param resource [Qiita::Team::Services::Resources::Base]
       def initialize(resource)
         @resource = resource
       end
 
       # User who emitted the event.
       #
-      # @return [Resources::User]
+      # @return [Qiita::Team::Services::Resources::User]
       def user
         fail NotImplementedError
       end
 
       # A team which the resource belongs to.
       #
-      # @return [Resources::Team]
+      # @return [Qiita::Team::Services::Resources::Team]
       def team
         resource.team
       end
