@@ -24,10 +24,6 @@ module Qiita::Team::Services
               described_class.render_form(binding)
             end
 
-            let(:service) do
-              described_class.new({})
-            end
-
             it { should be_a String }
           end
         end
