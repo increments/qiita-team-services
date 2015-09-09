@@ -22,10 +22,13 @@ module Qiita::Team::Services
       # @return [void]
       def ping
         send_message "Test message sent from Qiita:Team"
+      rescue DeliveryError
+        nil
       end
 
       # @param event [Events::ItemCreated]
       # @return [void]
+      # @raise [DeliveryError]
       def item_created(event)
         send_message <<-EOM.strip_heredoc
         #{event.user.name} created #{event.item.title}.
@@ -35,6 +38,7 @@ module Qiita::Team::Services
 
       # @param event [Events::ItemUpdated]
       # @return [void]
+      # @raise [DeliveryError]
       def item_updated(event)
         send_message <<-EOM.strip_heredoc
         #{event.user.name} updated #{event.item.title}.
@@ -44,6 +48,7 @@ module Qiita::Team::Services
 
       # @param event [Events::ItemBecameCoediting]
       # @return [void]
+      # @raise [DeliveryError]
       def item_became_coediting(event)
         send_message <<-EOM.strip_heredoc
         #{event.user.name} changed #{event.item.title} to coedit mode.
@@ -53,6 +58,7 @@ module Qiita::Team::Services
 
       # @param event [Events::CommentCreated]
       # @return [void]
+      # @raise [DeliveryError]
       def comment_created(event)
         send_message <<-EOM.strip_heredoc
         #{event.user.name} commented on #{event.item.title}.
@@ -62,12 +68,14 @@ module Qiita::Team::Services
 
       # @param event [Events::MemberAdded]
       # @return [void]
+      # @raise [DeliveryError]
       def team_member_added(event)
         send_message("#{event.member.name} is added to #{event.team.name} team.")
       end
 
       # @param event [Events::ProjectCreated]
       # @return [void]
+      # @raise [DeliveryError]
       def project_created(event)
         send_message <<-EOM.strip_heredoc
         #{event.user.name} created #{event.project.name} project.
@@ -77,6 +85,7 @@ module Qiita::Team::Services
 
       # @param event [Events::ProjectUpdated]
       # @return [void]
+      # @raise [DeliveryError]
       def project_updated(event)
         send_message <<-EOM.strip_heredoc
         #{event.user.name} updated #{event.project.name} project.
@@ -86,6 +95,7 @@ module Qiita::Team::Services
 
       # @param event [Events::ProjectArchived]
       # @return [void]
+      # @raise [DeliveryError]
       def project_archived(event)
         send_message <<-EOM.strip_heredoc
         #{event.user.name} archived #{event.project.name} project.
@@ -95,6 +105,7 @@ module Qiita::Team::Services
 
       # @param event [Events::ProjectActivated]
       # @return [void]
+      # @raise [DeliveryError]
       def project_activated(event)
         send_message <<-EOM.strip_heredoc
         #{event.user.name} activated #{event.project.name} project.

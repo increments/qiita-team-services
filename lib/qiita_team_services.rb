@@ -6,6 +6,7 @@ module Qiita
 end
 
 require "qiita/team/services/engine"
+require "qiita/team/services/errors"
 require "qiita/team/services/events/comment_created"
 require "qiita/team/services/events/item_became_coediting"
 require "qiita/team/services/events/item_created"

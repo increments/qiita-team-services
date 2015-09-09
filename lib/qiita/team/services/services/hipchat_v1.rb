@@ -27,28 +27,34 @@ module Qiita::Team::Services
       # @return [void]
       def ping
         send_message "Test message sent from Qiita:Team"
+      rescue DeliveryError
+        nil
       end
 
       # @param event [Events::ItemCreated]
       # @return [void]
+      # @raise [DeliveryError]
       def item_created(event)
         send_message "#{user_link(event.user)} created #{item_link(event.item)}."
       end
 
       # @param event [Events::ItemUpdated]
       # @return [void]
+      # @raise [DeliveryError]
       def item_updated(event)
         send_message "#{user_link(event.user)} updated #{item_link(event.item)}."
       end
 
       # @param event [Events::ItemBecameCoediting]
       # @return [void]
+      # @raise [DeliveryError]
       def item_became_coediting(event)
         send_message "#{user_link(event.user)} changed #{item_link(event.item)} to coedit mode."
       end
 
       # @param event [Events::CommentCreated]
       # @return [void]
+      # @raise [DeliveryError]
       def comment_created(event)
         send_message <<-EOM.strip_heredoc
         #{user_link(event.user)} commented on #{item_link(event.item)}.
@@ -58,30 +64,35 @@ module Qiita::Team::Services
 
       # @param event [Events::MemberAdded]
       # @return [void]
+      # @raise [DeliveryError]
       def team_member_added(event)
         send_message("#{user_link(event.member)} was added to #{event.team.name} team.")
       end
 
       # @param event [Events::ProjectCreated]
       # @return [void]
+      # @raise [DeliveryError]
       def project_created(event)
         send_message("#{user_link(event.user)} created #{project_link(event.project)} project.")
       end
 
       # @param event [Events::ProjectUpdated]
       # @return [void]
+      # @raise [DeliveryError]
       def project_updated(event)
         send_message("#{user_link(event.user)} updated #{project_link(event.project)} project.")
       end
 
       # @param event [Events::ProjectActivated]
       # @return [void]
+      # @raise [DeliveryError]
       def project_activated(event)
         send_message("#{user_link(event.user)} activated #{project_link(event.project)} project.")
       end
 
       # @param event [Events::ProjectArchived]
       # @return [void]
+      # @raise [DeliveryError]
       def project_archived(event)
         send_message("#{user_link(event.user)} archived #{event.project.name} project.")
       end
@@ -91,6 +102,8 @@ module Qiita::Team::Services
       # @param message [String]
       def send_message(message)
         client.send(from, message, color: color, notify: with_notification)
+      rescue HipChat::UnknownRoom, HipChat::Unauthorized, HipChat::UnknownResponseCode
+        raise DeliveryError
       end
 
       # @return [HipChat::Client] configured with API v1.

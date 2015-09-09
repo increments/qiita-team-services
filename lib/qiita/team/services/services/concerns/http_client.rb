@@ -21,13 +21,19 @@ module Qiita::Team::Services
 
         # @param request_body [Hash, Array] request payload.
         # @return [Faraday::Response]
+        # @raise [DeliveryError]
         def http_post(request_body)
-          http_client.post do |req|
+          resp = http_client.post do |req|
             req.url url
             req.body = request_body
             request_headers.each_pair do |key, value|
               req.headers[key] = value
             end
+          end
+          if resp.success?
+            resp
+          else
+            fail DeliveryError
           end
         end
 

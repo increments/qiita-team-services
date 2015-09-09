@@ -37,10 +37,13 @@ module Qiita::Team::Services
         def ping
           fallback = "Test message sent from Qiita:Team"
           send_message(attachments: [fallback: fallback, pretext: fallback])
+        rescue DeliveryError
+          nil
         end
 
         # @param event [Events::ItemCreated]
         # @return [void]
+        # @raise [DeliveryError]
         def item_created(event)
           fallback = "#{user_link(event.user)} created a new post"
           send_message(
@@ -59,6 +62,7 @@ module Qiita::Team::Services
 
         # @param event [Events::ItemUpdated]
         # @return [void]
+        # @raise [DeliveryError]
         def item_updated(event)
           fallback = "#{user_link(event.user)} updated #{item_link(event.item)}"
           send_message(
@@ -71,6 +75,7 @@ module Qiita::Team::Services
 
         # @param event [Events::ItemBecameCoediting]
         # @return [void]
+        # @raise [DeliveryError]
         def item_became_coediting(event)
           fallback = "#{user_link(event.user)} changed #{item_link(event.item)} to coedit mode"
           send_message(
@@ -83,6 +88,7 @@ module Qiita::Team::Services
 
         # @param event [Events::CommentCreated]
         # @return [void]
+        # @raise [DeliveryError]
         def comment_created(event)
           fallback =
             if event.item.coediting?
@@ -104,6 +110,7 @@ module Qiita::Team::Services
 
         # @param event [Events::MemberAdded]
         # @return [void]
+        # @raise [DeliveryError]
         def team_member_added(event)
           fallback = "#{user_link(event.member)} is added to the #{team_link(event.team)} team"
           send_message(
@@ -116,6 +123,7 @@ module Qiita::Team::Services
 
         # @param event [Events::ProjectCreated]
         # @return [void]
+        # @raise [DeliveryError]
         def project_created(event)
           fallback = "#{user_link(event.user)} created #{project_link(event.project)} project"
           send_message(
@@ -131,6 +139,7 @@ module Qiita::Team::Services
 
         # @param event [Events::ProjectUpdated]
         # @return [void]
+        # @raise [DeliveryError]
         def project_updated(event)
           fallback = "#{user_link(event.user)} updated #{project_link(event.project)} project"
           send_message(
@@ -146,6 +155,7 @@ module Qiita::Team::Services
 
         # @param event [Events::ProjectArchived]
         # @return [void]
+        # @raise [DeliveryError]
         def project_archived(event)
           fallback = "#{user_link(event.user)} archived #{project_link(event.project)} project"
           send_message(
@@ -161,6 +171,7 @@ module Qiita::Team::Services
 
         # @param event [Events::ProjectActivated]
         # @return [void]
+        # @raise [DeliveryError]
         def project_activated(event)
           fallback = "#{user_link(event.user)} activated #{project_link(event.project)} project"
           send_message(
