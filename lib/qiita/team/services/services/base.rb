@@ -84,7 +84,6 @@ module Qiita::Team::Services
           attr_accessor name
         end
 
-        # @param lang [String] :en or :ja
         # @return [String]
         def form_template
           File.read(File.expand_path("../../templates/#{service_type}.html.erb", __FILE__))
@@ -120,7 +119,8 @@ module Qiita::Team::Services
         end
       end
 
-      # @return event [Events::Base]
+      # @param event [Events::Base]
+      # @return [void]
       def handle(event)
         if respond_to?(event.class.event_name)
           public_send(event.class.event_name, event)

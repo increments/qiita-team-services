@@ -26,7 +26,6 @@ module Qiita::Team::Services
       attr_reader :resource
 
       # @param resource [Resources::Base]
-      # @param team [Resources::Team]
       def initialize(resource)
         @resource = resource
       end
