@@ -1,3 +1,5 @@
+require "faraday"
+
 module Qiita::Team::Services
   module Services
     module Concerns
