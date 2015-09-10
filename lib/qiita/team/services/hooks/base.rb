@@ -1,55 +1,22 @@
 require "erb"
 
 require "active_model"
-require "active_support/core_ext/module/delegation"
-require "active_support/inflector"
 
 require "qiita/team/services/hooks"
+require "qiita/team/services/hooks/concerns/event_handlable"
+require "qiita/team/services/hooks/concerns/persistable"
+require "qiita/team/services/hooks/concerns/service"
 
 module Qiita::Team::Services
   module Hooks
     # @abstract
     class Base
       include ActiveModel::Validations
+      include Concerns::EventHandlable
+      include Concerns::Persistable
+      include Concerns::Service
 
       class << self
-        # @return [true, false]
-        def deprecated?
-          @deprecated == true
-        end
-
-        # @return [true, false]
-        def pingable?
-          public_instance_methods.include?(:ping)
-        end
-
-        # List of implemented event names.
-        #
-        # @return [Array<Symbol>]
-        def available_event_names
-          public_instance_methods & Events.event_names
-        end
-
-        # @return [Array<Qiita::Team::Services::Properties::Base>]
-        def service_properties
-          @service_properties ||= []
-        end
-
-        # @return [Array<String>]
-        def property_names
-          service_properties.map(&:name)
-        end
-
-        # @return [String]
-        def service_type
-          name.demodulize.underscore
-        end
-
-        # @return [String]
-        def service_name
-          fail NotImplementedError
-        end
-
         # @param attr [String]
         # @return [String]
         def human_attribute_name(attr, _options = {})
@@ -68,73 +35,10 @@ module Qiita::Team::Services
           Hooks.all_hooks << child
         end
 
-        # Mark the service as deprecated.
-        #
-        # @return [void]
-        def deprecated
-          @deprecated = true
-        end
-
-        # @param name [Symbol]
-        # @param type [Symbol] :string or :boolean.
-        # @param default [String, true, false]
-        # @return [void]
-        def define_property(name, type: :string, default: nil)
-          service_properties << Properties.create(name, type, default)
-          attr_accessor name
-        end
-
         # @return [String]
         def form_template
           File.read(File.expand_path("../../templates/#{service_type}.html.erb", __FILE__))
         end
-      end
-
-      delegate :deprecated?, :pingable?, to: :class
-
-      # @param hash [Hash{String => Object}] deserialized properties hash.
-      def initialize(hash)
-        self.class.service_properties.each do |property|
-          if hash.key?(property.name)
-            public_send("#{property.name}=", hash[property.name])
-          else
-            public_send("#{property.name}=", property.default)
-          end
-        end
-      end
-
-      # The service name.
-      #
-      # @return [String]
-      def name
-        self.class.service_name
-      end
-
-      # Serialize the service object.
-      #
-      # @return [Hash{String => Object}] serialized properties.
-      def to_hash
-        self.class.service_properties.map(&:name).each_with_object({}) do |name, hash|
-          hash[name] = public_send(name)
-        end
-      end
-
-      # @param event [Qiita::Team::Services::Events::Base]
-      # @return [void]
-      def handle(event)
-        if respond_to?(event.class.event_name)
-          public_send(event.class.event_name, event)
-        else
-          fail NotImplementedError
-        end
-      end
-
-      # Returns whether or not this record will be destroyed as part of
-      # the parents save transaction.
-      #
-      # @note Override ActiveRecord::AutosaveAssociation#marked_for_destruction?.
-      def marked_for_destruction?
-        false
       end
     end
   end
