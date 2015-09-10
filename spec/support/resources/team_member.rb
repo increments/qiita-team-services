@@ -2,7 +2,7 @@ require "support/resources/base"
 
 module Qiita::Team::Services
   module Resources
-    class User < Base
+    class TeamMember < Base
       attr_accessor :team
       attr_accessor :id
       attr_accessor :name

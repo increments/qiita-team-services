@@ -3,32 +3,12 @@
 There are several resources in `Qiita::Team::Services::Resources` module.
 They are defined in Qiita core.
 
-- [Team](#team)
-- [User](#team)
+- [TeamMember](#teammember)
 - [Item](#item)
 - [Project](#project)
 - [Comment](#comment)
 
-## Team
-
-method  | type   | description
---------|--------|----------------
-`#id`   | String | Unique team id.
-`#name` | String | Team name.
-`#url`  | String | Team root url.
-
-### Example
-
-```rb
-team.id
-#=> "increments"
-team.name
-#=> "Increments inc."
-team.url
-#=> "https://increments.qiita.com"
-```
-
-## User
+## TeamMember
 
 method               | type   | description
 ---------------------|--------|---------------------
@@ -53,19 +33,19 @@ user.url
 
 ## Item
 
-method           | type          | description
------------------|---------------|------------------------------------------
-`#id`            | String        | Unique id.
-`#title`         | String        | Item title.
-`#body`          | String        | Item body in Markdown.
-`#rendered_body` | String        | Item body in HTML.
-`#url`           | String        | Item resource url.
-`#coediting?`    | Boolean       | A flag whether this item is co-edit mode.
-`#user`          | User          | User who created this item.
-`#team`          | Team          | The team.
-`#tags`          | Array<String> | Array of tag names.
-`#created_at`    | Datetime      | Datetime when this item was created.
-`#updated_at`    | Datetime      | Datetime when this item was last updated.
+method        | type          | description
+--------------|---------------|------------------------------------------
+`#id`         | String        | Unique id.
+`#title`      | String        | Item title.
+`#raw_body`   | String        | Item body in Markdown.
+`#body`       | String        | Item body in HTML.
+`#url`        | String        | Item resource url.
+`#coediting?` | Boolean       | A flag whether this item is co-edit mode.
+`#user`       | TeamMember    | User who created this item.
+`#team`       | Team          | The team.
+`#tags`       | Array<String> | Array of tag names.
+`#created_at` | Datetime      | Datetime when this item was created.
+`#updated_at` | Datetime      | Datetime when this item was last updated.
 
 ### Example
 
@@ -83,7 +63,7 @@ item.url
 item.coediting?
 #=> false
 item.user
-#=> <Qiita::Team::Services::Resouces::User>
+#=> <Qiita::Team::Services::Resouces::TeamMember>
 item.tags
 #=> ["example"]
 item.created_at
@@ -94,17 +74,17 @@ item.updated_at
 
 ## Project
 
-method           | type     | description
------------------|----------|-------------------------------------
-`#id`            | Fixnum   | Project unique id.
-`#name`          | String   | Project name.
-`#body`          | String   | Project body in Markdown.
-`#rendered_body` | String   | Project body in HTML.
-`#url`           | String   | Project resource url.
-`#archived?`     | Boolean  | A flag whether this project has been archived.
-`#team`          | Team     | The team.
-`#created_at`    | Datetime | Datetime when this project was created.
-`#updated_at`    | Datetime | Datetime when this project was last updated.
+method        | type     | description
+--------------|----------|-------------------------------------
+`#id`         | Fixnum   | Project unique id.
+`#name`       | String   | Project name.
+`#raw_body`   | String   | Project body in Markdown.
+`#body`       | String   | Project body in HTML.
+`#url`        | String   | Project resource url.
+`#archived?`  | Boolean  | A flag whether this project has been archived.
+`#team`       | Team     | The team.
+`#created_at` | Datetime | Datetime when this project was created.
+`#updated_at` | Datetime | Datetime when this project was last updated.
 
 ### Example
 
@@ -129,15 +109,16 @@ project.updated_at
 
 ## Comment
 
-method           | type          | description
------------------|---------------|----------------------------------------
-`#id`            | String        | Comment unique id.
-`#body`          | String        | Comment body in Markdown.
-`#rendered_body` | String        | Comment body in HTML.
-`#url`           | String        | Comment resource url.
-`#item`          | Item, Project | Commented item or project.
-`#team`          | Team          | The team.
-`#created_at`    | Datetime      | Datetime when this comment was created.
+method        | type          | description
+--------------|---------------|----------------------------------------
+`#id`         | String        | Comment unique id.
+`#raw_body`   | String        | Comment body in Markdown.
+`#body`       | String        | Comment body in HTML.
+`#url`        | String        | Comment resource url.
+`#item`       | Item, Project | Commented item or project.
+`#user`       | TeamMember    | User who wrote the comment.
+`#team`       | Team          | The team.
+`#created_at` | Datetime      | Datetime when this comment was created.
 
 ### Example
 

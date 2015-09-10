@@ -55,7 +55,7 @@ module Qiita::Team::Services
               author_icon: event.user.profile_image_url,
               title: event.item.title,
               title_link: event.item.url,
-              text: Slacken.translate(event.item.rendered_body),
+              text: Slacken.translate(event.item.body),
             ],
           )
         end
@@ -103,7 +103,7 @@ module Qiita::Team::Services
               author_name: "@#{event.user.id}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
-              text: Slacken.translate(event.comment.rendered_body),
+              text: Slacken.translate(event.comment.body),
             ],
           )
         end

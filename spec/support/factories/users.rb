@@ -1,7 +1,7 @@
-require "support/resources/user"
+require "support/resources/team_member"
 
 FactoryGirl.define do
-  factory :user, aliases: [:team_member], class: Qiita::Team::Services::Resources::User do
+  factory :user, aliases: [:team_member], class: Qiita::Team::Services::Resources::TeamMember do
     team
     id { generate(:id) }
     name { "name#{id}" }
