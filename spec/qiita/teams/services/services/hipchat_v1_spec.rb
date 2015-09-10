@@ -1,6 +1,6 @@
-describe Qiita::Team::Services::Services::HipchatV1 do
+describe Qiita::Team::Services::Hooks::HipchatV1 do
   include Qiita::Team::Services::Helpers::EventHelper
-  include Qiita::Team::Services::Helpers::ServiceHelper
+  include Qiita::Team::Services::Helpers::HookHelper
 
   EXPECTED_AVAILABLE_EVENT_NAMES = [
     :comment_created,
@@ -26,7 +26,7 @@ describe Qiita::Team::Services::Services::HipchatV1 do
     end
   end
 
-  let(:service) do
+  let(:hook) do
     described_class.new(properties)
   end
 
@@ -60,7 +60,7 @@ describe Qiita::Team::Services::Services::HipchatV1 do
     false
   end
 
-  it_behaves_like "service"
+  it_behaves_like "hook"
 
   describe ".service_name" do
     subject do
@@ -80,7 +80,7 @@ describe Qiita::Team::Services::Services::HipchatV1 do
 
   describe "#ping" do
     subject do
-      service.ping
+      hook.ping
     end
 
     it "sends a text message" do
@@ -109,7 +109,7 @@ describe Qiita::Team::Services::Services::HipchatV1 do
   EXPECTED_AVAILABLE_EVENT_NAMES.each do |event_name|
     describe "##{event_name}" do
       subject do
-        service.public_send(event_name, public_send("#{event_name}_event"))
+        hook.public_send(event_name, public_send("#{event_name}_event"))
       end
 
       it "sends a text message with HipChat client" do

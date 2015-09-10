@@ -1,7 +1,7 @@
 require "faraday"
 
 module Qiita::Team::Services
-  module Services
+  module Hooks
     module Concerns
       module HttpClient
         private

@@ -1,10 +1,10 @@
 require "active_support/concern"
 require "slacken"
 
-require "qiita/team/services/services/concerns/http_client"
+require "qiita/team/services/hooks/concerns/http_client"
 
 module Qiita::Team::Services
-  module Services
+  module Hooks
     module Concerns
       # Send richly-formatted messages to Slack.
       # Override {HttpClient#url} to implement HttpClient.

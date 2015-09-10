@@ -1,10 +1,10 @@
 require "active_support/core_ext/string/strip"
 
-require "qiita/team/services/services/base"
-require "qiita/team/services/services/concerns/http_client"
+require "qiita/team/services/hooks/base"
+require "qiita/team/services/hooks/concerns/http_client"
 
 module Qiita::Team::Services
-  module Services
+  module Hooks
     class ChatworkV1 < Base
       include Concerns::HttpClient
 

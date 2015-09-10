@@ -1,11 +1,11 @@
-describe Qiita::Team::Services::Services::SlackV1 do
+describe Qiita::Team::Services::Hooks::SlackV1 do
   include Qiita::Team::Services::Helpers::HttpClientStubHelper
-  include Qiita::Team::Services::Helpers::ServiceHelper
-  include Qiita::Team::Services::Helpers::SlackServiceHelper
+  include Qiita::Team::Services::Helpers::HookHelper
+  include Qiita::Team::Services::Helpers::SlackHookHelper
 
   shared_context "Delivery success" do
     before do
-      stubs = get_http_client_stub(service)
+      stubs = get_http_client_stub(hook)
       stubs.post("/services/hooks/incoming-webhook?token=#{integration_token}") do |_env|
         [200, { "Content-Type" => "application/json" }, { message_id: 1 }]
       end
@@ -14,14 +14,14 @@ describe Qiita::Team::Services::Services::SlackV1 do
 
   shared_context "Delivery fail" do
     before do
-      stubs = get_http_client_stub(service)
+      stubs = get_http_client_stub(hook)
       stubs.post("/services/hooks/incoming-webhook?token=#{integration_token}") do |_env|
         [400, {}, ""]
       end
     end
   end
 
-  let(:service) do
+  let(:hook) do
     described_class.new(properties)
   end
 
@@ -50,6 +50,6 @@ describe Qiita::Team::Services::Services::SlackV1 do
     ":qiitan:"
   end
 
-  it_behaves_like "service"
-  it_behaves_like "Slack services"
+  it_behaves_like "hook"
+  it_behaves_like "Slack hook"
 end

@@ -1,6 +1,6 @@
 module Qiita
   module Team
-    module Services
+    module Hooks
     end
   end
 end
@@ -18,8 +18,8 @@ require "qiita/team/services/events/project_updated"
 require "qiita/team/services/events/team_member_added"
 require "qiita/team/services/properties/boolean_property"
 require "qiita/team/services/properties/string_property"
-require "qiita/team/services/services/chatwork_v1"
-require "qiita/team/services/services/hipchat_v1"
-require "qiita/team/services/services/slack_v1"
-require "qiita/team/services/services/slack_v2"
+require "qiita/team/services/hooks/chatwork_v1"
+require "qiita/team/services/hooks/hipchat_v1"
+require "qiita/team/services/hooks/slack_v1"
+require "qiita/team/services/hooks/slack_v2"
 require "qiita/team/services/version"
