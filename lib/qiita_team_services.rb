@@ -1,6 +1,6 @@
 module Qiita
   module Team
-    module Hooks
+    module Services
     end
   end
 end

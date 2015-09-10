@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 module Qiita
   module Team
-    module Hooks
+    module Services
     end
   end
 end
