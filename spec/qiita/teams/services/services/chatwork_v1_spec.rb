@@ -1,7 +1,7 @@
-describe Qiita::Team::Services::Services::ChatworkV1 do
+describe Qiita::Team::Services::Hooks::ChatworkV1 do
   include Qiita::Team::Services::Helpers::EventHelper
   include Qiita::Team::Services::Helpers::HttpClientStubHelper
-  include Qiita::Team::Services::Helpers::ServiceHelper
+  include Qiita::Team::Services::Helpers::HookHelper
 
   EXPECTED_AVAILABLE_EVENT_NAMES = [
     :comment_created,
@@ -17,7 +17,7 @@ describe Qiita::Team::Services::Services::ChatworkV1 do
 
   shared_context "Delivery success" do
     before do
-      stubs = get_http_client_stub(service)
+      stubs = get_http_client_stub(hook)
       stubs.post("/v1/rooms/#{room_id}/messages") do |_env|
         [200, { "Content-Type" => "application/json" }, { message_id: 1 }]
       end
@@ -26,14 +26,14 @@ describe Qiita::Team::Services::Services::ChatworkV1 do
 
   shared_context "Delivery fail" do
     before do
-      stubs = get_http_client_stub(service)
+      stubs = get_http_client_stub(hook)
       stubs.post("/v1/rooms/#{room_id}/messages") do |_env|
         [400, {}, ""]
       end
     end
   end
 
-  let(:service) do
+  let(:hook) do
     described_class.new(properties)
   end
 
@@ -49,7 +49,7 @@ describe Qiita::Team::Services::Services::ChatworkV1 do
     "abc"
   end
 
-  it_behaves_like "service"
+  it_behaves_like "hook"
 
   describe ".service_name" do
     subject do
@@ -69,11 +69,11 @@ describe Qiita::Team::Services::Services::ChatworkV1 do
 
   describe "#ping" do
     subject do
-      service.ping
+      hook.ping
     end
 
     it "sends a text message" do
-      expect(service).to receive(:send_message).with(a_kind_of(String))
+      expect(hook).to receive(:send_message).with(a_kind_of(String))
       subject
     end
 
@@ -93,11 +93,11 @@ describe Qiita::Team::Services::Services::ChatworkV1 do
   EXPECTED_AVAILABLE_EVENT_NAMES.each do |event_name|
     describe "##{event_name}" do
       subject do
-        service.public_send(event_name, public_send("#{event_name}_event"))
+        hook.public_send(event_name, public_send("#{event_name}_event"))
       end
 
       it "sends a text message" do
-        expect(service).to receive(:send_message).with(a_kind_of(String))
+        expect(hook).to receive(:send_message).with(a_kind_of(String))
         subject
       end
 

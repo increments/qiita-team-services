@@ -1,8 +1,8 @@
-require "qiita/team/services/services/base"
-require "qiita/team/services/services/concerns/slack"
+require "qiita/team/services/hooks/base"
+require "qiita/team/services/hooks/concerns/slack"
 
 module Qiita::Team::Services
-  module Services
+  module Hooks
     class SlackV1 < Base
       deprecated
 

@@ -7,7 +7,7 @@ ja:
             icon_emoji_help_block_html: |-
               Slackに登録されている全てのアイコンが指定可能です（例 <code>:shipit:</code>）。<br/>
               省略した場合、Qiita:Teamのアイコンが使われます。
-        services:
+        hooks:
           chatwork_v1:
             room_id: ルームID
             token: トークン

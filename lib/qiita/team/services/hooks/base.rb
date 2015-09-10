@@ -4,10 +4,10 @@ require "active_model"
 require "active_support/core_ext/module/delegation"
 require "active_support/inflector"
 
-require "qiita/team/services/services"
+require "qiita/team/services/hooks"
 
 module Qiita::Team::Services
-  module Services
+  module Hooks
     # @abstract
     class Base
       include ActiveModel::Validations
@@ -53,7 +53,7 @@ module Qiita::Team::Services
         # @param attr [String]
         # @return [String]
         def human_attribute_name(attr, _options = {})
-          I18n.t("qiita.team.services.services.#{service_type}.#{attr}")
+          I18n.t("qiita.team.services.hooks.#{service_type}.#{attr}")
         end
 
         # @return [String]
@@ -65,7 +65,7 @@ module Qiita::Team::Services
 
         def inherited(child)
           super
-          Services.all_services << child
+          Hooks.all_hooks << child
         end
 
         # Mark the service as deprecated.

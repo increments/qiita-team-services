@@ -7,7 +7,7 @@ en:
             icon_emoji_help_block_html:
               Any Slack icons are available here (eg <code>:shipit:</code>). <br/>
               Qiita:Team icon is used by default.
-        services:
+        hooks:
           chatwork_v1:
             room_id: Room ID
             token: Token

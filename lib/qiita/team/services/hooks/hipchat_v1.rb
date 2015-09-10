@@ -1,9 +1,9 @@
 require "hipchat"
 
-require "qiita/team/services/services/base"
+require "qiita/team/services/hooks/base"
 
 module Qiita::Team::Services
-  module Services
+  module Hooks
     class HipchatV1 < Base
       AVAILABLE_COLORS = %w(yellow red green purple random).freeze
 

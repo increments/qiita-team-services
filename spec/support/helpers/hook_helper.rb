@@ -3,11 +3,11 @@ require "action_view/helpers"
 
 module Qiita::Team::Services
   module Helpers
-    module ServiceHelper
+    module HookHelper
       extend ActiveSupport::Concern
 
       included do
-        shared_examples "service" do
+        shared_examples "hook" do
           describe ".service_name" do
             subject do
               described_class.service_name

@@ -4,7 +4,7 @@ require "support/helpers/event_helper"
 
 module Qiita::Team::Services
   module Helpers
-    module SlackServiceHelper
+    module SlackHookHelper
       extend ActiveSupport::Concern
       include EventHelper
 
@@ -21,7 +21,7 @@ module Qiita::Team::Services
       ].freeze
 
       included do
-        shared_examples "Slack services" do
+        shared_examples "Slack hook" do
           describe ".service_name" do
             subject do
               described_class.service_name
@@ -40,11 +40,11 @@ module Qiita::Team::Services
 
           describe "#ping" do
             subject do
-              service.ping
+              hook.ping
             end
 
             it "sends message with proper attachments" do
-              expect(service).to receive(:send_message) do |request_body|
+              expect(hook).to receive(:send_message) do |request_body|
                 expect(request_body).to match_slack_attachments_request
               end.once
               subject
@@ -66,11 +66,11 @@ module Qiita::Team::Services
           EXPECTED_AVAILABLE_EVENT_NAMES.each do |event_name|
             describe "##{event_name}" do
               subject do
-                service.public_send(event_name, public_send("#{event_name}_event"))
+                hook.public_send(event_name, public_send("#{event_name}_event"))
               end
 
               it "sends message with proper attachments" do
-                expect(service).to receive(:send_message) do |request_body|
+                expect(hook).to receive(:send_message) do |request_body|
                   expect(request_body).to match_slack_attachments_request
                 end.once
                 subject
