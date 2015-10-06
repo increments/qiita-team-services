@@ -64,8 +64,8 @@ method           | type          | description
 `#user`          | User          | User who created this item.
 `#team`          | Team          | The team.
 `#tags`          | Array<String> | Array of tag names.
-`#created_at`    | Datetime      | Datetime when this item was created.
-`#updated_at`    | Datetime      | Datetime when this item was last updated.
+`#created_at`    | Time          | Time when this item was created.
+`#updated_at`    | Time          | Time when this item was last updated.
 
 ### Example
 
@@ -103,8 +103,8 @@ method           | type     | description
 `#url`           | String   | Project resource url.
 `#archived?`     | Boolean  | A flag whether this project has been archived.
 `#team`          | Team     | The team.
-`#created_at`    | Datetime | Datetime when this project was created.
-`#updated_at`    | Datetime | Datetime when this project was last updated.
+`#created_at`    | Time     | Time when this project was created.
+`#updated_at`    | Time     | Time when this project was last updated.
 
 ### Example
 
@@ -137,7 +137,7 @@ method           | type          | description
 `#url`           | String        | Comment resource url.
 `#item`          | Item, Project | Commented item or project.
 `#team`          | Team          | The team.
-`#created_at`    | Datetime      | Datetime when this comment was created.
+`#created_at`    | Time          | Time when this comment was created.
 
 ### Example
 
