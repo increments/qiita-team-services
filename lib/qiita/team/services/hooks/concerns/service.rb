@@ -9,7 +9,7 @@ module Qiita::Team::Services
 
         class_methods do
           # @return [String]
-          def service_type
+          def hook_type
             name.demodulize.underscore
           end
 

@@ -17,8 +17,8 @@ module Qiita::Team::Services
       end
 
       # @return [Array<String>]
-      def all_service_types
-        all_hooks.map(&:service_type)
+      def all_hook_types
+        all_hooks.map(&:hook_type)
       end
     end
   end

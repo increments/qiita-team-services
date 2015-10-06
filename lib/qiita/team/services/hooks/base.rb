@@ -20,7 +20,7 @@ module Qiita::Team::Services
         # @param attr [String]
         # @return [String]
         def human_attribute_name(attr, _options = {})
-          I18n.t("qiita.team.services.hooks.#{service_type}.#{attr}")
+          I18n.t("qiita.team.services.hooks.#{hook_type}.#{attr}")
         end
 
         # @return [String]
@@ -37,7 +37,7 @@ module Qiita::Team::Services
 
         # @return [String]
         def form_template
-          File.read(File.expand_path("../../templates/#{service_type}.html.erb", __FILE__))
+          File.read(File.expand_path("../../templates/#{hook_type}.html.erb", __FILE__))
         end
       end
     end
