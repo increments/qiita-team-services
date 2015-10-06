@@ -8,11 +8,6 @@ module Qiita::Team::Services
       # @return [Qiita::Team::Services::Resources::Comment]
       alias_method :comment, :resource
 
-      # User who wrote the comment.
-      #
-      # @return [Qiita::Team::Services::Resources::User]
-      delegate :user, to: :comment
-
       # Commented item.
       #
       # @return [Qiita::Team::Services::Resources::Item]

@@ -7,11 +7,6 @@ module Qiita::Team::Services
     class ProjectCreated < Base
       # @return [Qiita::Team::Services::Resources::Project]
       alias_method :project, :resource
-
-      # User who created the project.
-      #
-      # @return [Qiita::Team::Services::Resources::User]
-      delegate :user, to: :project
     end
   end
 end

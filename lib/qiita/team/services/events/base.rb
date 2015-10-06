@@ -26,16 +26,16 @@ module Qiita::Team::Services
       attr_reader :resource
 
       # @param resource [Qiita::Team::Services::Resources::Base]
-      def initialize(resource)
+      # @param user [Qiita::Team::Services::Resources::User]
+      def initialize(resource, user)
         @resource = resource
+        @user = user
       end
 
       # User who emitted the event.
       #
       # @return [Qiita::Team::Services::Resources::User]
-      def user
-        fail NotImplementedError
-      end
+      attr_reader :user
 
       # A team which the resource belongs to.
       #

@@ -10,9 +10,10 @@ module Qiita::Team::Services
 
       # @param event_name [Symbol]
       # @param resource [Qiita::Team::Services::Resources::Base]
+      # @param user [Qiita::Team::Services::Resources::User]
       # @return [Qiita::Team::Services::Events::Base]
-      def create(event_name, resource)
-        event_class(event_name).new(resource)
+      def create(event_name, resource, user)
+        event_class(event_name).new(resource, user)
       end
 
       private
