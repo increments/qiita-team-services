@@ -11,7 +11,7 @@ FactoryGirl.define do
     rendered_body "<h1>Example</h1>"
     url { "#{team.url}/#{id}" }
     coediting false
-    tags %w(sample tag)
+    tags { [build(:tagging)] }
     created_at { Time.now }
     updated_at { Time.now }
   end

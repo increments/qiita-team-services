@@ -8,6 +8,7 @@ They are defined in Qiita core.
 - [Item](#item)
 - [Project](#project)
 - [Comment](#comment)
+- [Tagging](#tagging)
 
 ## Team
 
@@ -53,19 +54,19 @@ user.url
 
 ## Item
 
-method           | type          | description
------------------|---------------|------------------------------------------
-`#id`            | String        | Unique id.
-`#title`         | String        | Item title.
-`#body`          | String        | Item body in Markdown.
-`#rendered_body` | String        | Item body in HTML.
-`#url`           | String        | Item resource url.
-`#coediting?`    | Boolean       | A flag whether this item is co-edit mode.
-`#user`          | User          | User who created this item.
-`#team`          | Team          | The team.
-`#tags`          | Array<String> | Array of tag names.
-`#created_at`    | Time          | Time when this item was created.
-`#updated_at`    | Time          | Time when this item was last updated.
+method           | type                                            | description
+-----------------|-------------------------------------------------|------------------------------------------
+`#id`            | String                                          | Unique id.
+`#title`         | String                                          | Item title.
+`#body`          | String                                          | Item body in Markdown.
+`#rendered_body` | String                                          | Item body in HTML.
+`#url`           | String                                          | Item resource url.
+`#coediting?`    | Boolean                                         | A flag whether this item is co-edit mode.
+`#user`          | User                                            | User who created this item.
+`#team`          | Team                                            | The team.
+`#tags`          | Array<Qiita::Team::Services::Resouces::Tagging> | Array of tag names.
+`#created_at`    | Time                                            | Time when this item was created.
+`#updated_at`    | Time                                            | Time when this item was last updated.
 
 ### Example
 
@@ -85,7 +86,7 @@ item.coediting?
 item.user
 #=> <Qiita::Team::Services::Resouces::User>
 item.tags
-#=> ["example"]
+#=> [<Qiita::Team::Services::Resouces::Tagging>]
 item.created_at
 #=> 2000-01-01T00:00:00+00:00
 item.updated_at
@@ -155,3 +156,23 @@ comment.item
 comment.created_at
 #=> 2000-01-01T00:00:00+00:00
 ```
+
+## Tagging
+
+method           | type          | description
+-----------------|---------------|----------------------------------------
+`#name`          | String        | Human tag name.
+`#url_name`      | String        | Tag name for URL.
+`#versions`      | Array<String> | Version strings.
+
+### Example
+
+```rb
+
+tagging.name
+#=> "Ruby"
+tagging.url_name
+#=> "ruby"
+tagging.versions
+#=> ["2.2.1"]
+``
