@@ -10,14 +10,19 @@ module Qiita::Team::Services
 
       EXPECTED_AVAILABLE_EVENT_NAMES = [
         :comment_created,
+        :comment_destroyed,
+        :comment_updated,
         :item_became_coediting,
         :item_created,
+        :item_destroyed,
         :item_updated,
         :project_activated,
         :project_archived,
         :project_created,
+        :project_destroyed,
         :project_updated,
         :team_member_added,
+        :team_member_removed,
       ].freeze
 
       included do

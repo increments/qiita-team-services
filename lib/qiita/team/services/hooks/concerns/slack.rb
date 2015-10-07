@@ -86,6 +86,19 @@ module Qiita::Team::Services
           )
         end
 
+        # @param event [Qiita::Team::Services::Events::ItemDestroyed]
+        # @return [void]
+        # @raise [DeliveryError]
+        def item_destroyed(event)
+          fallback = "#{user_link(event.user)} deleted #{event.item.title}"
+          send_message(
+            attachments: [
+              fallback: fallback,
+              pretext: fallback,
+            ],
+          )
+        end
+
         # @param event [Qiita::Team::Services::Events::CommentCreated]
         # @return [void]
         # @raise [DeliveryError]
@@ -108,11 +121,54 @@ module Qiita::Team::Services
           )
         end
 
+        # @param event [Qiita::Team::Services::Events::CommentUpdated]
+        # @return [void]
+        # @raise [DeliveryError]
+        def comment_updated(event)
+          fallback = "#{user_link(event.user)} updated a #{comment_link(event.comment)}"
+          fallback << " on #{item_link(event.item)}"
+          send_message(
+            attachments: [
+              fallback: fallback,
+              pretext: fallback,
+              author_name: "@#{event.user.id}",
+              author_link: event.user.url,
+              author_icon: event.user.profile_image_url,
+            ],
+          )
+        end
+
+        # @param event [Qiita::Team::Services::Events::CommentDestroyed]
+        # @return [void]
+        # @raise [DeliveryError]
+        def comment_destroyed(event)
+          fallback = "#{user_link(event.user)} deleted a comemnt on #{item_link(event.item)}"
+          send_message(
+            attachments: [
+              fallback: fallback,
+              pretext: fallback,
+            ],
+          )
+        end
+
         # @param event [Qiita::Team::Services::Events::MemberAdded]
         # @return [void]
         # @raise [DeliveryError]
         def team_member_added(event)
-          fallback = "#{user_link(event.member)} is added to the #{team_link(event.team)} team"
+          fallback = "#{user_link(event.member)} was added to the #{team_link(event.team)} team"
+          send_message(
+            attachments: [
+              fallback: fallback,
+              pretext: fallback,
+            ],
+          )
+        end
+
+        # @param event [Qiita::Team::Services::Events::MemberRemoved]
+        # @return [void]
+        # @raise [DeliveryError]
+        def team_member_removed(event)
+          fallback = "#{event.member.name} was removed from the #{team_link(event.team)} team"
           send_message(
             attachments: [
               fallback: fallback,
@@ -149,6 +205,19 @@ module Qiita::Team::Services
               author_name: "@#{event.user.id}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
+            ],
+          )
+        end
+
+        # @param event [Qiita::Team::Services::Events::ProjectDestroyed]
+        # @return [void]
+        # @raise [DeliveryError]
+        def project_destroyed(event)
+          fallback = "#{user_link(event.user)} deleted #{project_link(event.project)} project"
+          send_message(
+            attachments: [
+              fallback: fallback,
+              pretext: fallback,
             ],
           )
         end
@@ -212,6 +281,12 @@ module Qiita::Team::Services
         # @return [String]
         def item_link(item)
           "<#{item.url}|#{item.title}>"
+        end
+
+        # @param comment [Qiita::Team::Services::Resources::Comment]
+        # @return [String]
+        def comment_link(comment)
+          "<#{comment.url}|comment>"
         end
 
         # @param project [Qiita::Team::Services::Resources::Project]
