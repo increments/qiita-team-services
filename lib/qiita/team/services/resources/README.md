@@ -38,7 +38,6 @@ method               | type   | description
 `#name`              | String | Human readable name.
 `#profile_image_url` | String | User icon url.
 `#url`               | String | Url to the user page.
-`#team`              | Team   | The team.
 
 ### Example
 
