@@ -50,7 +50,7 @@ module Qiita::Team::Services
             attachments: [
               fallback: fallback,
               pretext: fallback,
-              author_name: "@#{event.user.id}",
+              author_name: "@#{event.user.url_name}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
               title: event.item.title,
@@ -113,7 +113,7 @@ module Qiita::Team::Services
             attachments: [
               fallback: fallback,
               pretext: fallback,
-              author_name: "@#{event.user.id}",
+              author_name: "@#{event.user.url_name}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
               text: Slacken.translate(event.comment.rendered_body),
@@ -131,7 +131,7 @@ module Qiita::Team::Services
             attachments: [
               fallback: fallback,
               pretext: fallback,
-              author_name: "@#{event.user.id}",
+              author_name: "@#{event.user.url_name}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
             ],
@@ -186,7 +186,7 @@ module Qiita::Team::Services
             attachments: [
               fallback: fallback,
               pretext: fallback,
-              author_name: "@#{event.user.id}",
+              author_name: "@#{event.user.url_name}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
             ],
@@ -202,7 +202,7 @@ module Qiita::Team::Services
             attachments: [
               fallback: fallback,
               pretext: fallback,
-              author_name: "@#{event.user.id}",
+              author_name: "@#{event.user.url_name}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
             ],
@@ -231,7 +231,7 @@ module Qiita::Team::Services
             attachments: [
               fallback: fallback,
               pretext: fallback,
-              author_name: "@#{event.user.id}",
+              author_name: "@#{event.user.url_name}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
             ],
@@ -247,7 +247,7 @@ module Qiita::Team::Services
             attachments: [
               fallback: fallback,
               pretext: fallback,
-              author_name: "@#{event.user.id}",
+              author_name: "@#{event.user.url_name}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
             ],

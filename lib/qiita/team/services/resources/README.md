@@ -34,6 +34,7 @@ team.url
 method               | type   | description
 ---------------------|--------|---------------------
 `#id`                | String | Unique user id.
+`#url_name`          | String | Qiita ID.
 `#name`              | String | Human readable name.
 `#profile_image_url` | String | User icon url.
 `#url`               | String | Url to the user page.
@@ -43,6 +44,8 @@ method               | type   | description
 
 ```rb
 user.id
+#=> 1
+user.url_name
 #=> "qiitan"
 user.name
 #=> "Mr. Qiitan"

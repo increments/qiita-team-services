@@ -5,6 +5,7 @@ module Qiita::Team::Services
     class User < Base
       attr_accessor :team
       attr_accessor :id
+      attr_accessor :url_name
       attr_accessor :name
       attr_accessor :url
       attr_accessor :profile_image_url
