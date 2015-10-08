@@ -31,10 +31,11 @@ module Qiita::Team::Services
       }.each_pair do |resource_name, action_names|
         action_names.each do |action_name|
           event_name = "#{resource_name}_#{action_name}"
-          define_method "#{event_name}_event" do |resource = nil, user = nil|
+          define_method "#{event_name}_event" do |resource = nil, user = nil, team = nil|
             resource ||= build(resource_name)
             user ||= build(:user)
-            Events.create(event_name, resource, user)
+            team ||= build(:team)
+            Events.create(event_name, resource, user, team)
           end
         end
       end

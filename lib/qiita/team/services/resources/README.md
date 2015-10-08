@@ -65,7 +65,6 @@ method           | type                                            | description
 `#url`           | String                                          | Item resource url.
 `#coediting?`    | Boolean                                         | A flag whether this item is co-edit mode.
 `#user`          | User                                            | User who created this item.
-`#team`          | Team                                            | The team.
 `#tags`          | Array<Qiita::Team::Services::Resouces::Tagging> | Array of tag names.
 `#created_at`    | Time                                            | Time when this item was created.
 `#updated_at`    | Time                                            | Time when this item was last updated.
@@ -105,7 +104,6 @@ method           | type     | description
 `#rendered_body` | String   | Project body in HTML.
 `#url`           | String   | Project resource url.
 `#archived?`     | Boolean  | A flag whether this project has been archived.
-`#team`          | Team     | The team.
 `#created_at`    | Time     | Time when this project was created.
 `#updated_at`    | Time     | Time when this project was last updated.
 
@@ -139,7 +137,6 @@ method           | type          | description
 `#rendered_body` | String        | Comment body in HTML.
 `#url`           | String        | Comment resource url.
 `#item`          | Item, Project | Commented item or project.
-`#team`          | Team          | The team.
 `#created_at`    | Time          | Time when this comment was created.
 
 ### Example

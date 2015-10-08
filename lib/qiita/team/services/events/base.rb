@@ -20,17 +20,18 @@ module Qiita::Team::Services
         end
       end
 
+      # @param resource [Qiita::Team::Services::Resources::Base]
+      # @param user [Qiita::Team::Services::Resources::User]
+      def initialize(resource, user, team)
+        @resource = resource
+        @user = user
+        @team = team
+      end
+
       # Created/updated resource object.
       #
       # @return [Qiita::Team::Services::Resources::Base]
       attr_reader :resource
-
-      # @param resource [Qiita::Team::Services::Resources::Base]
-      # @param user [Qiita::Team::Services::Resources::User]
-      def initialize(resource, user)
-        @resource = resource
-        @user = user
-      end
 
       # User who emitted the event.
       #
@@ -40,9 +41,7 @@ module Qiita::Team::Services
       # A team which the resource belongs to.
       #
       # @return [Qiita::Team::Services::Resources::Team]
-      def team
-        resource.team
-      end
+      attr_reader :team
     end
   end
 end
