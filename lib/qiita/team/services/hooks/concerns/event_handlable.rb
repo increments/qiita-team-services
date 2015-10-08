@@ -40,11 +40,8 @@ module Qiita::Team::Services
         # @param event [Qiita::Team::Services::Events::Base]
         # @return [void]
         def handle(event)
-          if respond_to?(event.class.event_name)
-            public_send(event.class.event_name, event)
-          else
-            fail NotImplementedError
-          end
+          return unless respond_to?(event.class.event_name)
+          public_send(event.class.event_name, event)
         end
       end
     end
