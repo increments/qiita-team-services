@@ -31,11 +31,6 @@ module Qiita::Team::Services
         super(hash)
       end
 
-      # @note Override Qiita::Team::Services::Hooks::Concerns::EventHandlable#handle
-      def handle(event)
-        public_send(event.class.event_name, event)
-      end
-
       def ping
         send_hook(
           action: "requested",
