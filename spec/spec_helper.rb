@@ -1,3 +1,6 @@
+require "ffaker"
+require "pry"
+require "webmock/rspec"
 require "faraday"
 require "qiita_team_services"
 
