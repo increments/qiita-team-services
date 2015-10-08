@@ -11,6 +11,19 @@ module Qiita::Team::Services
       attr_accessor :team
       attr_accessor :user
       attr_accessor :created_at
+      attr_accessor :updated_at
+
+      webhook_property :id
+      webhook_property :body
+      webhook_property :raw_body
+      webhook_property :url
+      webhook_property :user
+      webhook_property :created_at
+      webhook_property :updated_at
+
+      def raw_body
+        body
+      end
     end
   end
 end
