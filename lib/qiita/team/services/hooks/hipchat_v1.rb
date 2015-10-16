@@ -33,28 +33,28 @@ module Qiita::Team::Services
 
       # @param event [Qiita::Team::Services::Events::ItemCreated]
       # @return [void]
-      # @raise [DeliveryError]
+      # @raise [Qiita::Team::Services::DeliveryError]
       def item_created(event)
         send_message "#{user_link(event.user)} created #{item_link(event.item)}."
       end
 
       # @param event [Qiita::Team::Services::Events::ItemUpdated]
       # @return [void]
-      # @raise [DeliveryError]
+      # @raise [Qiita::Team::Services::DeliveryError]
       def item_updated(event)
         send_message "#{user_link(event.user)} updated #{item_link(event.item)}."
       end
 
       # @param event [Qiita::Team::Services::Events::ItemBecameCoediting]
       # @return [void]
-      # @raise [DeliveryError]
+      # @raise [Qiita::Team::Services::DeliveryError]
       def item_became_coediting(event)
         send_message "#{user_link(event.user)} changed #{item_link(event.item)} to coedit mode."
       end
 
       # @param event [Qiita::Team::Services::Events::CommentCreated]
       # @return [void]
-      # @raise [DeliveryError]
+      # @raise [Qiita::Team::Services::DeliveryError]
       def comment_created(event)
         send_message <<-EOM.strip_heredoc
         #{user_link(event.user)} commented on #{item_link(event.item)}.
@@ -64,35 +64,35 @@ module Qiita::Team::Services
 
       # @param event [Qiita::Team::Services::Events::MemberAdded]
       # @return [void]
-      # @raise [DeliveryError]
+      # @raise [Qiita::Team::Services::DeliveryError]
       def team_member_added(event)
         send_message("#{user_link(event.member)} was added to #{event.team.name} team.")
       end
 
       # @param event [Qiita::Team::Services::Events::ProjectCreated]
       # @return [void]
-      # @raise [DeliveryError]
+      # @raise [Qiita::Team::Services::DeliveryError]
       def project_created(event)
         send_message("#{user_link(event.user)} created #{project_link(event.project)} project.")
       end
 
       # @param event [Qiita::Team::Services::Events::ProjectUpdated]
       # @return [void]
-      # @raise [DeliveryError]
+      # @raise [Qiita::Team::Services::DeliveryError]
       def project_updated(event)
         send_message("#{user_link(event.user)} updated #{project_link(event.project)} project.")
       end
 
       # @param event [Qiita::Team::Services::Events::ProjectActivated]
       # @return [void]
-      # @raise [DeliveryError]
+      # @raise [Qiita::Team::Services::DeliveryError]
       def project_activated(event)
         send_message("#{user_link(event.user)} activated #{project_link(event.project)} project.")
       end
 
       # @param event [Qiita::Team::Services::Events::ProjectArchived]
       # @return [void]
-      # @raise [DeliveryError]
+      # @raise [Qiita::Team::Services::DeliveryError]
       def project_archived(event)
         send_message("#{user_link(event.user)} archived #{event.project.name} project.")
       end
