@@ -9,15 +9,18 @@ module Qiita::Team::Services
       include EventHelper
 
       EXPECTED_AVAILABLE_EVENT_NAMES = [
-        :comment_created,
-        :comment_destroyed,
-        :comment_updated,
         :item_became_coediting,
+        :item_comment_created,
+        :item_comment_destroyed,
+        :item_comment_updated,
         :item_created,
         :item_destroyed,
         :item_updated,
         :project_activated,
         :project_archived,
+        :project_comment_created,
+        :project_comment_destroyed,
+        :project_comment_updated,
         :project_created,
         :project_destroyed,
         :project_updated,

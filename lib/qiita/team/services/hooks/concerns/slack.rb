@@ -99,10 +99,10 @@ module Qiita::Team::Services
           )
         end
 
-        # @param event [Qiita::Team::Services::Events::CommentCreated]
+        # @param event [Qiita::Team::Services::Events::ItemCommentCreated]
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
-        def comment_created(event)
+        def item_comment_created(event)
           fallback =
             if event.item.coediting?
               "New comment on #{item_link(event.item)}"
@@ -121,10 +121,10 @@ module Qiita::Team::Services
           )
         end
 
-        # @param event [Qiita::Team::Services::Events::CommentUpdated]
+        # @param event [Qiita::Team::Services::Events::ItemCommentUpdated]
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
-        def comment_updated(event)
+        def item_comment_updated(event)
           fallback = "#{user_link(event.user)} updated a #{comment_link(event.comment)}"
           fallback << " on #{item_link(event.item)}"
           send_message(
@@ -135,11 +135,55 @@ module Qiita::Team::Services
           )
         end
 
-        # @param event [Qiita::Team::Services::Events::CommentDestroyed]
+        # @param event [Qiita::Team::Services::Events::ItemCommentDestroyed]
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
-        def comment_destroyed(event)
+        def item_comment_destroyed(event)
           fallback = "#{user_link(event.user)} deleted a comemnt on #{item_link(event.item)}"
+          send_message(
+            attachments: [
+              fallback: fallback,
+              pretext: fallback,
+            ],
+          )
+        end
+
+        # @param event [Qiita::Team::Services::Events::ProjectCommentCreated]
+        # @return [void]
+        # @raise [Qiita::Team::Services::DeliveryError]
+        def project_comment_created(event)
+          fallback = "New comment on #{project_link(event.project)}"
+          send_message(
+            attachments: [
+              fallback: fallback,
+              pretext: fallback,
+              author_name: "@#{event.user.url_name}",
+              author_link: event.user.url,
+              author_icon: event.user.profile_image_url,
+              text: Slacken.translate(event.comment.rendered_body),
+            ],
+          )
+        end
+
+        # @param event [Qiita::Team::Services::Events::ProjectCommentUpdated]
+        # @return [void]
+        # @raise [Qiita::Team::Services::DeliveryError]
+        def project_comment_updated(event)
+          fallback = "#{user_link(event.user)} updated a #{comment_link(event.comment)}"
+          fallback << " on #{project_link(event.project)}"
+          send_message(
+            attachments: [
+              fallback: fallback,
+              pretext: fallback,
+            ],
+          )
+        end
+
+        # @param event [Qiita::Team::Services::Events::ProjectCommentDestroyed]
+        # @return [void]
+        # @raise [Qiita::Team::Services::DeliveryError]
+        def project_comment_destroyed(event)
+          fallback = "#{user_link(event.user)} deleted a comemnt on #{project_link(event.project)}"
           send_message(
             attachments: [
               fallback: fallback,

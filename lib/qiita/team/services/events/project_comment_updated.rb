@@ -4,14 +4,16 @@ require "qiita/team/services/events/base"
 
 module Qiita::Team::Services
   module Events
-    class CommentUpdated < Base
+    class ProjectCommentUpdated < Base
       # @return [Qiita::Team::Services::Resources::Comment]
       alias_method :comment, :resource
 
-      # Commented item.
+      # Commented project.
       #
-      # @return [Qiita::Team::Services::Resources::Item]
-      delegate :item, to: :comment
+      # @return [Qiita::Team::Services::Resources::Project]
+      def project
+        comment.item
+      end
     end
   end
 end
