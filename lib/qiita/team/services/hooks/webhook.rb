@@ -69,8 +69,8 @@ module Qiita::Team::Services
         )
       end
 
-      # @param event [Qiita::Team::Services::Events::CommentCreated]
-      def comment_created(event)
+      # @param event [Qiita::Team::Services::Events::ItemCommentCreated]
+      def item_comment_created(event)
         send_hook(
           action: "created",
           model: "comment",
@@ -79,8 +79,8 @@ module Qiita::Team::Services
         )
       end
 
-      # @param event [Qiita::Team::Services::Events::CommentUpdated]
-      def comment_updated(event)
+      # @param event [Qiita::Team::Services::Events::ItemCommentUpdated]
+      def item_comment_updated(event)
         send_hook(
           action: "updated",
           model: "comment",
@@ -89,13 +89,43 @@ module Qiita::Team::Services
         )
       end
 
-      # @param event [Qiita::Team::Services::Events::CommentDestroyed]
-      def comment_destroyed(event)
+      # @param event [Qiita::Team::Services::Events::ItemCommentDestroyed]
+      def item_comment_destroyed(event)
         send_hook(
           action: "destroyed",
           model: "comment",
           comment: event.resource,
           item: event.item,
+        )
+      end
+
+      # @param event [Qiita::Team::Services::Events::ProjectCommentCreated]
+      def project_comment_created(event)
+        send_hook(
+          action: "created",
+          model: "comment",
+          comment: event.resource,
+          item: event.project,
+        )
+      end
+
+      # @param event [Qiita::Team::Services::Events::ProjectCommentUpdated]
+      def project_comment_updated(event)
+        send_hook(
+          action: "updated",
+          model: "comment",
+          comment: event.resource,
+          item: event.project,
+        )
+      end
+
+      # @param event [Qiita::Team::Services::Events::ProjectCommentDestroyed]
+      def project_comment_destroyed(event)
+        send_hook(
+          action: "destroyed",
+          model: "comment",
+          comment: event.resource,
+          item: event.project,
         )
       end
 

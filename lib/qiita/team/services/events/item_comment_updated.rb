@@ -4,7 +4,7 @@ require "qiita/team/services/events/base"
 
 module Qiita::Team::Services
   module Events
-    class CommentCreated < Base
+    class ItemCommentUpdated < Base
       # @return [Qiita::Team::Services::Resources::Comment]
       alias_method :comment, :resource
 

@@ -52,12 +52,22 @@ module Qiita::Team::Services
         send_message "#{user_link(event.user)} changed #{item_link(event.item)} to coedit mode."
       end
 
-      # @param event [Qiita::Team::Services::Events::CommentCreated]
+      # @param event [Qiita::Team::Services::Events::ItemCommentCreated]
       # @return [void]
       # @raise [Qiita::Team::Services::DeliveryError]
-      def comment_created(event)
+      def item_comment_created(event)
         send_message <<-EOM.strip_heredoc
         #{user_link(event.user)} commented on #{item_link(event.item)}.
+        <pre>#{event.comment.body.truncate(100)}</pre>
+        EOM
+      end
+
+      # @param event [Qiita::Team::Services::Events::ProjectCommentCreated]
+      # @return [void]
+      # @raise [Qiita::Team::Services::DeliveryError]
+      def project_comment_created(event)
+        send_message <<-EOM.strip_heredoc
+        #{user_link(event.user)} commented on #{project_link(event.project)}.
         <pre>#{event.comment.body.truncate(100)}</pre>
         EOM
       end

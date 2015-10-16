@@ -6,7 +6,12 @@ module Qiita::Team::Services
       extend ActiveSupport::Concern
 
       {
-        comment: [
+        item_comment: [
+          :created,
+          :updated,
+          :destroyed,
+        ],
+        project_comment: [
           :created,
           :updated,
           :destroyed,

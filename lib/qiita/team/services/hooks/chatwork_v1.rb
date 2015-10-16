@@ -56,13 +56,23 @@ module Qiita::Team::Services
         EOM
       end
 
-      # @param event [Qiita::Team::Services::Events::CommentCreated]
+      # @param event [Qiita::Team::Services::Events::ItemCommentCreated]
       # @return [void]
       # @raise [Qiita::Team::Services::DeliveryError]
-      def comment_created(event)
+      def item_comment_created(event)
         send_message <<-EOM.strip_heredoc
         #{event.user.name} commented on #{event.item.title}.
         #{event.item.url}[info]#{event.comment.body.truncate(100)}[/info]
+        EOM
+      end
+
+      # @param event [Qiita::Team::Services::Events::ProjectCommentCreated]
+      # @return [void]
+      # @raise [Qiita::Team::Services::DeliveryError]
+      def project_comment_created(event)
+        send_message <<-EOM.strip_heredoc
+        #{event.user.name} commented on #{event.project.name} project.
+        #{event.project.url}[info]#{event.comment.body.truncate(100)}[/info]
         EOM
       end
 

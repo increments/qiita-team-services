@@ -150,13 +150,13 @@ describe Qiita::Team::Services::Hooks::Webhook, :versioning do
     end
   end
 
-  describe "#comment_created" do
+  describe "#item_comment_created" do
     subject do
-      hook.comment_created(event)
+      hook.item_comment_created(event)
     end
 
     let(:event_name) do
-      "comment_created"
+      "item_comment_created"
     end
 
     let(:resource) do
@@ -177,13 +177,13 @@ describe Qiita::Team::Services::Hooks::Webhook, :versioning do
     end
   end
 
-  describe "#comment_updated" do
+  describe "#item_comment_updated" do
     subject do
-      hook.comment_updated(event)
+      hook.item_comment_updated(event)
     end
 
     let(:event_name) do
-      "comment_updated"
+      "item_comment_updated"
     end
 
     let(:resource) do
@@ -204,13 +204,94 @@ describe Qiita::Team::Services::Hooks::Webhook, :versioning do
     end
   end
 
-  describe "#comment_destroyed" do
+  describe "#item_comment_destroyed" do
     subject do
-      hook.comment_destroyed(event)
+      hook.item_comment_destroyed(event)
     end
 
     let(:event_name) do
-      "comment_destroyed"
+      "item_comment_destroyed"
+    end
+
+    let(:resource) do
+      build(:comment)
+    end
+
+    it "sends webhook" do
+      request = stub_request(:post, url).with(
+        body: {
+          action: "destroyed",
+          model: "comment",
+          comment: kind_of(Hash),
+          item: kind_of(Hash),
+        },
+      )
+      subject
+      expect(request).to have_been_made
+    end
+  end
+
+  describe "#project_comment_created" do
+    subject do
+      hook.project_comment_created(event)
+    end
+
+    let(:event_name) do
+      "project_comment_created"
+    end
+
+    let(:resource) do
+      build(:comment)
+    end
+
+    it "sends webhook" do
+      request = stub_request(:post, url).with(
+        body: {
+          action: "created",
+          model: "comment",
+          comment: kind_of(Hash),
+          item: kind_of(Hash),
+        },
+      )
+      subject
+      expect(request).to have_been_made
+    end
+  end
+
+  describe "#project_comment_updated" do
+    subject do
+      hook.project_comment_updated(event)
+    end
+
+    let(:event_name) do
+      "project_comment_updated"
+    end
+
+    let(:resource) do
+      build(:comment)
+    end
+
+    it "sends webhook" do
+      request = stub_request(:post, url).with(
+        body: {
+          action: "updated",
+          model: "comment",
+          comment: kind_of(Hash),
+          item: kind_of(Hash),
+        },
+      )
+      subject
+      expect(request).to have_been_made
+    end
+  end
+
+  describe "#project_comment_destroyed" do
+    subject do
+      hook.project_comment_destroyed(event)
+    end
+
+    let(:event_name) do
+      "project_comment_destroyed"
     end
 
     let(:resource) do

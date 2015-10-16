@@ -3,12 +3,13 @@ describe Qiita::Team::Services::Hooks::HipchatV1 do
   include Qiita::Team::Services::Helpers::HookHelper
 
   EXPECTED_AVAILABLE_EVENT_NAMES = [
-    :comment_created,
     :item_became_coediting,
+    :item_comment_created,
     :item_created,
     :item_updated,
     :project_activated,
     :project_archived,
+    :project_comment_created,
     :project_created,
     :project_updated,
     :team_member_added,
