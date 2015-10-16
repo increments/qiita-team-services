@@ -39,7 +39,7 @@ module Qiita::Team::Services
 
         # @param request_body [Hash, Array] request payload.
         # @return [Faraday::Response]
-        # @raise [DeliveryError]
+        # @raise [Qiita::Team::Services::DeliveryError]
         def http_post(request_body, headers = {})
           resp = http_client.post do |req|
             req.url url
