@@ -7,6 +7,10 @@ ja:
             icon_emoji_help_block_html: |-
               Slackに登録されている全てのアイコンが指定可能です（例 <code>:shipit:</code>）。<br/>
               省略した場合、Qiita:Teamのアイコンが使われます。
+            webhook_url_help_block_html: |-
+              SlackチャンネルへのIncoming webhooks連携は
+              <a href="https://slack.com/integrations" target="_blank">https://slack.com/integrations</a>
+              で追加することができます。
         hooks:
           chatwork_v1:
             room_id: ルームID
