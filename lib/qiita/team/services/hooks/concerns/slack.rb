@@ -56,6 +56,7 @@ module Qiita::Team::Services
               title: event.item.title,
               title_link: event.item.url,
               text: Slacken.translate(event.item.rendered_body),
+              mrkdwn_in: ["text"],
             ],
           )
         end
@@ -117,6 +118,7 @@ module Qiita::Team::Services
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
               text: Slacken.translate(event.comment.rendered_body),
+              mrkdwn_in: ["text"],
             ],
           )
         end
@@ -161,6 +163,7 @@ module Qiita::Team::Services
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
               text: Slacken.translate(event.comment.rendered_body),
+              mrkdwn_in: ["text"],
             ],
           )
         end
