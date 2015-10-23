@@ -27,7 +27,7 @@ describe Qiita::Team::Services::Hooks::HipchatV1 do
     end
   end
 
-  let(:hook) do
+  subject(:hook) do
     described_class.new(properties)
   end
 

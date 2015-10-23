@@ -21,7 +21,7 @@ describe Qiita::Team::Services::Hooks::SlackV1 do
     end
   end
 
-  let(:hook) do
+  subject(:hook) do
     described_class.new(properties)
   end
 
@@ -51,5 +51,5 @@ describe Qiita::Team::Services::Hooks::SlackV1 do
   end
 
   it_behaves_like "hook"
-  it_behaves_like "Slack hook"
+  it_behaves_like "Slack hook", hook: :hook
 end

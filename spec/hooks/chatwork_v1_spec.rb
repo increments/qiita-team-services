@@ -34,7 +34,7 @@ describe Qiita::Team::Services::Hooks::ChatworkV1 do
     end
   end
 
-  let(:hook) do
+  subject(:hook) do
     described_class.new(properties)
   end
 

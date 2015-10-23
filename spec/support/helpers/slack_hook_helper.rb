@@ -29,7 +29,7 @@ module Qiita::Team::Services
       ].freeze
 
       included do
-        shared_examples "Slack hook" do
+        shared_examples "Slack hook" do |hook:|
           describe ".service_name" do
             subject do
               described_class.service_name
@@ -48,11 +48,11 @@ module Qiita::Team::Services
 
           describe "#ping" do
             subject do
-              hook.ping
+              send(hook).ping
             end
 
             it "sends message with proper attachments" do
-              expect(hook).to receive(:send_message) do |request_body|
+              expect(send(hook)).to receive(:send_message) do |request_body|
                 expect(request_body).to match_slack_attachments_request
               end.once
               subject
@@ -74,11 +74,11 @@ module Qiita::Team::Services
           EXPECTED_AVAILABLE_EVENT_NAMES.each do |event_name|
             describe "##{event_name}" do
               subject do
-                hook.public_send(event_name, public_send("#{event_name}_event"))
+                send(hook).public_send(event_name, public_send("#{event_name}_event"))
               end
 
               it "sends message with proper attachments" do
-                expect(hook).to receive(:send_message) do |request_body|
+                expect(send(hook)).to receive(:send_message) do |request_body|
                   expect(request_body).to match_slack_attachments_request
                 end.once
                 subject

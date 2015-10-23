@@ -1,5 +1,5 @@
 describe Qiita::Team::Services::Hooks::Webhook, :versioning do
-  let(:hook) do
+  subject(:hook) do
     described_class.new(properties)
   end
 
