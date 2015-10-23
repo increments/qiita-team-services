@@ -462,4 +462,40 @@ describe Qiita::Team::Services::Hooks::Webhook, :versioning do
       expect(request).to have_been_made
     end
   end
+
+  describe "#valid?" do
+    subject { hook.valid? }
+
+    context "when url is http" do
+      let(:url) do
+        FFaker::Internet.uri(:http)
+      end
+
+      it { should be true }
+    end
+
+    context "when url is http" do
+      let(:url) do
+        FFaker::Internet.uri(:https)
+      end
+
+      it { should be true }
+    end
+
+    context "when url is ftp" do
+      let(:url) do
+        FFaker::Internet.uri(:ftp)
+      end
+
+      it { should be false }
+    end
+
+    context "when url is not a URI" do
+      let(:url) do
+        "example.com"
+      end
+
+      it { should be false }
+    end
+  end
 end

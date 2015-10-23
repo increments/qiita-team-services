@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0")
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "activemodel-url_validator"
   spec.add_dependency "faraday", "~> 0.9"
   spec.add_dependency "faraday_middleware", "~> 0.10"
   spec.add_dependency "rails", "~> 4.2"

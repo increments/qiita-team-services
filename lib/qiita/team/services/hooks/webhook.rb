@@ -1,3 +1,4 @@
+require "activemodel-url_validator"
 require "securerandom"
 
 require "qiita/team/services/hooks/base"
@@ -11,7 +12,10 @@ module Qiita::Team::Services
       define_property :token
 
       validates :token, format: %r{\A[A-Za-z0-9+/=]{20,40}\z}
-      validates :url, presence: true
+      validates :url, presence: true,
+                      url: { scheme: ['http', 'https'],
+                             message: :invalid_scheme,
+                             allow_blank: true }
 
       # @note Override {Qiita::Team::Services::Hooks::Base.service_name}.
       def self.service_name

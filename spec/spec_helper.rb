@@ -1,7 +1,7 @@
+require "faraday"
 require "ffaker"
 require "pry"
 require "webmock/rspec"
-require "faraday"
 require "qiita_team_services"
 
 Dir.glob("spec/support/{helpers,matchers}/*.rb").each do |filepath|

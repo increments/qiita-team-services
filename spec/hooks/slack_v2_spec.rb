@@ -47,4 +47,24 @@ describe Qiita::Team::Services::Hooks::SlackV2 do
 
   it_behaves_like "hook"
   it_behaves_like "Slack hook", hook: :hook
+
+  describe "#valid?" do
+    subject { hook.valid? }
+
+    context "when url starts with https://hooks.slack.com/" do
+      let(:webhook_url) do
+        "https://hooks.slack.com/services/foo/bar"
+      end
+
+      it { should be true }
+    end
+
+    context "when url does not start with https://hooks.slack.com/" do
+      let(:webhook_url) do
+        "http://hooks.slack.com/services/foo/bar"
+      end
+
+      it { should be false }
+    end
+  end
 end

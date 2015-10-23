@@ -33,3 +33,14 @@ ja:
           webhook:
             url: URL
             token: トークン
+  activemodel:
+    errors:
+      models:
+        qiita/team/services/hooks/slack_v2:
+          attributes:
+            webhook_url:
+              not_slack_url: は正しいSlack URLではありません。
+        qiita/team/services/hooks/webhook:
+          attributes:
+            url:
+              invalid_scheme: はhttpかhttpsでなければなりません。

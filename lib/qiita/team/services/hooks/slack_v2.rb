@@ -8,7 +8,10 @@ module Qiita::Team::Services
 
       define_property :webhook_url
 
-      validates :webhook_url, presence: true
+      validates :webhook_url, presence: true,
+                              format: { with: %r{\Ahttps://hooks\.slack\.com},
+                                        message: :not_slack_url,
+                                        allow_blank: true }
 
       private
 

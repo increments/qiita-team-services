@@ -32,3 +32,14 @@ en:
           webhook:
             url: URL
             token: Token
+  activemodel:
+    errors:
+      models:
+        qiita/team/services/hooks/slack_v2:
+          attributes:
+            webhook_url:
+              not_slack_url: is not a valid Slack hook url.
+        qiita/team/services/hooks/webhook:
+          attributes:
+            url:
+              invalid_scheme: must be a http or https url.
