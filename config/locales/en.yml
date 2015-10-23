@@ -29,3 +29,6 @@ en:
             icon_emoji: Icon emoji
             username: Username
             webhook_url: Webhook URL
+          webhook:
+            url: URL
+            token: Token

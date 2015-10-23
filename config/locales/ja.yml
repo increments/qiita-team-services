@@ -30,3 +30,6 @@ ja:
             icon_emoji: ユーザアイコン絵文字
             username: ユーザ名
             webhook_url: Webhook URL
+          webhook:
+            url: URL
+            token: トークン
