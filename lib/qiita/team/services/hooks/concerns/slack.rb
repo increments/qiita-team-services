@@ -35,8 +35,7 @@ module Qiita::Team::Services
 
         # @return [void]
         def ping
-          fallback = "Test message sent from Qiita:Team"
-          send_message(attachments: [fallback: fallback, pretext: fallback])
+          send_message(text: "Test message sent from Qiita:Team")
         rescue DeliveryError
           nil
         end
@@ -65,12 +64,8 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def item_updated(event)
-          fallback = "#{user_link(event.user)} updated #{item_link(event.item)}"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{user_link(event.user)} updated #{item_link(event.item)}",
           )
         end
 
@@ -78,12 +73,8 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def item_became_coediting(event)
-          fallback = "#{user_link(event.user)} changed #{item_link(event.item)} to coedit mode"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{user_link(event.user)} changed #{item_link(event.item)} to coedit mode",
           )
         end
 
@@ -91,12 +82,8 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def item_destroyed(event)
-          fallback = "#{user_link(event.user)} deleted #{event.item.title}"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{user_link(event.user)} deleted #{event.item.title}",
           )
         end
 
@@ -127,26 +114,17 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def item_comment_updated(event)
-          fallback = "#{user_link(event.user)} updated a #{comment_link(event.comment)}"
-          fallback << " on #{item_link(event.item)}"
-          send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
-          )
+          text = "#{user_link(event.user)} updated a #{comment_link(event.comment)}"
+          text << " on #{item_link(event.item)}"
+          send_message(text: text)
         end
 
         # @param event [Qiita::Team::Services::Events::ItemCommentDestroyed]
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def item_comment_destroyed(event)
-          fallback = "#{user_link(event.user)} deleted a comemnt on #{item_link(event.item)}"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{user_link(event.user)} deleted a comemnt on #{item_link(event.item)}",
           )
         end
 
@@ -172,26 +150,17 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def project_comment_updated(event)
-          fallback = "#{user_link(event.user)} updated a #{comment_link(event.comment)}"
-          fallback << " on #{project_link(event.project)}"
-          send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
-          )
+          text = "#{user_link(event.user)} updated a #{comment_link(event.comment)}"
+          text << " on #{project_link(event.project)}"
+          send_message(text: text)
         end
 
         # @param event [Qiita::Team::Services::Events::ProjectCommentDestroyed]
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def project_comment_destroyed(event)
-          fallback = "#{user_link(event.user)} deleted a comemnt on #{project_link(event.project)}"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{user_link(event.user)} deleted a comemnt on #{project_link(event.project)}",
           )
         end
 
@@ -199,12 +168,8 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def team_member_added(event)
-          fallback = "#{user_link(event.member)} was added to the #{team_link(event.team)} team"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{user_link(event.member)} was added to the #{team_link(event.team)} team",
           )
         end
 
@@ -212,12 +177,8 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def team_member_removed(event)
-          fallback = "#{event.member.name} was removed from the #{team_link(event.team)} team"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{event.member.name} was removed from the #{team_link(event.team)} team",
           )
         end
 
@@ -225,12 +186,8 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def project_created(event)
-          fallback = "#{user_link(event.user)} created #{project_link(event.project)} project"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{user_link(event.user)} created #{project_link(event.project)} project",
           )
         end
 
@@ -238,12 +195,8 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def project_updated(event)
-          fallback = "#{user_link(event.user)} updated #{project_link(event.project)} project"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{user_link(event.user)} updated #{project_link(event.project)} project",
           )
         end
 
@@ -251,12 +204,8 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def project_destroyed(event)
-          fallback = "#{user_link(event.user)} deleted #{project_link(event.project)} project"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{user_link(event.user)} deleted #{project_link(event.project)} project",
           )
         end
 
@@ -264,12 +213,8 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def project_archived(event)
-          fallback = "#{user_link(event.user)} archived #{project_link(event.project)} project"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{user_link(event.user)} archived #{project_link(event.project)} project",
           )
         end
 
@@ -277,12 +222,8 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def project_activated(event)
-          fallback = "#{user_link(event.user)} activated #{project_link(event.project)} project"
           send_message(
-            attachments: [
-              fallback: fallback,
-              pretext: fallback,
-            ],
+            text: "#{user_link(event.user)} activated #{project_link(event.project)} project",
           )
         end
 
