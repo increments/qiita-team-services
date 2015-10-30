@@ -28,6 +28,15 @@ module Qiita::Team::Services
         :team_member_removed,
       ].freeze
 
+      EVENT_NAMES_TO_SEND_WITH_ATTACHMENTS = [
+        :item_comment_created,
+        :item_created,
+        :project_comment_created,
+      ].freeze
+
+      EVENT_NAMES_TO_SEND_WITH_TEXT =
+        (EXPECTED_AVAILABLE_EVENT_NAMES - EVENT_NAMES_TO_SEND_WITH_ATTACHMENTS).freeze
+
       included do
         shared_examples "Slack hook" do |hook:|
           describe ".service_name" do
@@ -51,9 +60,9 @@ module Qiita::Team::Services
               send(hook).ping
             end
 
-            it "sends message with proper attachments" do
+            it "sends proper text message" do
               expect(send(hook)).to receive(:send_message) do |request_body|
-                expect(request_body).to match_slack_attachments_request
+                expect(request_body).to match_slack_text_request
               end.once
               subject
             end
@@ -71,7 +80,34 @@ module Qiita::Team::Services
             end
           end
 
-          EXPECTED_AVAILABLE_EVENT_NAMES.each do |event_name|
+          EVENT_NAMES_TO_SEND_WITH_TEXT.each do |event_name|
+            describe "##{event_name}" do
+              subject do
+                send(hook).public_send(event_name, public_send("#{event_name}_event"))
+              end
+
+              it "sends proper text message" do
+                expect(send(hook)).to receive(:send_message) do |request_body|
+                  expect(request_body).to match_slack_text_request
+                end.once
+                subject
+              end
+
+              context "when message is delivered successfully" do
+                include_context "Delivery success"
+
+                it { expect { subject }.not_to raise_error }
+              end
+
+              context "when message is not delivered successfully" do
+                include_context "Delivery fail"
+
+                it { expect { subject }.to raise_error(Qiita::Team::Services::DeliveryError) }
+              end
+            end
+          end
+
+          EVENT_NAMES_TO_SEND_WITH_ATTACHMENTS.each do |event_name|
             describe "##{event_name}" do
               subject do
                 send(hook).public_send(event_name, public_send("#{event_name}_event"))

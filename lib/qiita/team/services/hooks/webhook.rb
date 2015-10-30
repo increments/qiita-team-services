@@ -13,7 +13,7 @@ module Qiita::Team::Services
 
       validates :token, format: %r{\A[A-Za-z0-9+/=]{20,40}\z}
       validates :url, presence: true,
-                      url: { scheme: ['http', 'https'],
+                      url: { scheme: %w(http https),
                              message: :invalid_scheme,
                              allow_blank: true }
 
