@@ -247,13 +247,13 @@ module Qiita::Team::Services
         # @param user [Qiita::Team::Services::Resources::User]
         # @return [String]
         def user_link(user)
-          "<#{user.url}|#{user.name}>"
+          "<#{user.url}|#{markup_escape(user.name)}>"
         end
 
         # @param item [Qiita::Team::Services::Resources::Item]
         # @return [String]
         def item_link(item)
-          "<#{item.url}|#{item.title}>"
+          "<#{item.url}|#{markup_escape(item.title)}>"
         end
 
         # @param comment [Qiita::Team::Services::Resources::Comment]
@@ -265,13 +265,27 @@ module Qiita::Team::Services
         # @param project [Qiita::Team::Services::Resources::Project]
         # @return [String]
         def project_link(project)
-          "<#{project.url}|#{project.name}>"
+          "<#{project.url}|#{markup_escape(project.name)}>"
         end
 
         # @param team [Qiita::Team::Services::Resources::Team]
         # @return [String]
         def team_link(team)
-          "<#{team.url}|#{team.name}>"
+          "<#{team.url}|#{markup_escape(team.name)}>"
+        end
+
+        # Escape special characters for Slack markup.
+        #
+        # @see https://api.slack.com/docs/formatting
+        # @param text [String]
+        # @return [String]
+        def markup_escape(text)
+          table_for_escape = {
+            "&" => "&amp;",
+            "<" => "&lt;",
+            ">" => "&gt;",
+          }
+          text.gsub(/[&<>]/, table_for_escape)
         end
       end
     end
