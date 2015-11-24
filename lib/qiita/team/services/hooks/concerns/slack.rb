@@ -124,7 +124,7 @@ module Qiita::Team::Services
         # @raise [Qiita::Team::Services::DeliveryError]
         def item_comment_destroyed(event)
           send_message(
-            text: "#{user_link(event.user)} deleted a comemnt on #{item_link(event.item)}",
+            text: "#{user_link(event.user)} deleted a comment on #{item_link(event.item)}",
           )
         end
 
