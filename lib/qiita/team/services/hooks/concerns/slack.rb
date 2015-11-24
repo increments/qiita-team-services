@@ -95,7 +95,8 @@ module Qiita::Team::Services
             if event.item.coediting?
               "New #{comment_link(event.comment)} on #{item_link(event.item)}"
             else
-              "New #{comment_link(event.comment)} on #{user_link(event.item.user)}'s #{item_link(event.item)}"
+              "New #{comment_link(event.comment)} on #{user_link(event.item.user)}'s " \
+              "#{item_link(event.item)}"
             end
           send_message(
             attachments: [
