@@ -93,9 +93,10 @@ module Qiita::Team::Services
         def item_comment_created(event)
           fallback =
             if event.item.coediting?
-              "New comment on #{item_link(event.item)}"
+              "New #{comment_link(event.comment)} on #{item_link(event.item)}"
             else
-              "New comment on #{user_link(event.item.user)}'s #{item_link(event.item)}"
+              "New #{comment_link(event.comment)} on #{user_link(event.item.user)}'s " \
+              "#{item_link(event.item)}"
             end
           send_message(
             attachments: [
@@ -124,7 +125,7 @@ module Qiita::Team::Services
         # @raise [Qiita::Team::Services::DeliveryError]
         def item_comment_destroyed(event)
           send_message(
-            text: "#{user_link(event.user)} deleted a comemnt on #{item_link(event.item)}",
+            text: "#{user_link(event.user)} deleted a comment on #{item_link(event.item)}",
           )
         end
 
@@ -132,7 +133,7 @@ module Qiita::Team::Services
         # @return [void]
         # @raise [Qiita::Team::Services::DeliveryError]
         def project_comment_created(event)
-          fallback = "New comment on #{project_link(event.project)}"
+          fallback = "New #{comment_link(event.comment)} on #{project_link(event.project)}"
           send_message(
             attachments: [
               fallback: fallback,
