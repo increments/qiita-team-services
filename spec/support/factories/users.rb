@@ -5,7 +5,7 @@ FactoryGirl.define do
     id { generate(:id) }
     url_name { "url_name#{id}" }
     name { "name#{id}" }
-    url { "#{build(:team).url}/#{name}" }
+    url { "#{build(:team).url}/#{url_name}" }
     profile_image_url "http://example.com"
   end
 end
