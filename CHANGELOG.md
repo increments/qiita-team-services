@@ -1,3 +1,7 @@
+# 0.3.6
+
+- [#13] Escape special characters for slack markup.
+
 # 0.3.5
 
 - Add link to comments.
