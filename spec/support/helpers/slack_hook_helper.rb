@@ -28,15 +28,6 @@ module Qiita::Team::Services
         :team_member_removed,
       ].freeze
 
-      EVENT_NAMES_TO_SEND_WITH_ATTACHMENTS = [
-        :item_comment_created,
-        :item_created,
-        :project_comment_created,
-      ].freeze
-
-      EVENT_NAMES_TO_SEND_WITH_TEXT =
-        (EXPECTED_AVAILABLE_EVENT_NAMES - EVENT_NAMES_TO_SEND_WITH_ATTACHMENTS).freeze
-
       included do
         shared_examples "Slack hook" do |hook:|
           describe ".service_name" do
@@ -80,19 +71,8 @@ module Qiita::Team::Services
             end
           end
 
-          EVENT_NAMES_TO_SEND_WITH_TEXT.each do |event_name|
-            describe "##{event_name}" do
-              subject do
-                send(hook).public_send(event_name, public_send("#{event_name}_event"))
-              end
-
-              it "sends proper text message" do
-                expect(send(hook)).to receive(:send_message) do |request_body|
-                  expect(request_body).to match_slack_text_request
-                end.once
-                subject
-              end
-
+          describe "hook methods" do
+            shared_examples "hook method" do
               context "when message is delivered successfully" do
                 include_context "Delivery success"
 
@@ -105,31 +85,178 @@ module Qiita::Team::Services
                 it { expect { subject }.to raise_error(Qiita::Team::Services::DeliveryError) }
               end
             end
-          end
 
-          EVENT_NAMES_TO_SEND_WITH_ATTACHMENTS.each do |event_name|
-            describe "##{event_name}" do
-              subject do
-                send(hook).public_send(event_name, public_send("#{event_name}_event"))
+            shared_examples "text request hook method" do
+              it "sends proper text request message" do
+                expect(send(hook)).to receive(:send_message) do |request_body|
+                  expect(request_body).to match_slack_text_request
+                end.once
+                subject
               end
+            end
 
+            shared_examples "attachments request hook method" do
               it "sends message with proper attachments" do
                 expect(send(hook)).to receive(:send_message) do |request_body|
                   expect(request_body).to match_slack_attachments_request
                 end.once
                 subject
               end
+            end
 
-              context "when message is delivered successfully" do
-                include_context "Delivery success"
+            subject do
+              send(hook).public_send(event_name,
+                                     public_send("#{event_name}_event",
+                                                 try(:resource), try(:user), try(:team)))
+            end
 
-                it { expect { subject }.not_to raise_error }
+            describe "#item_created" do
+              let(:event_name) { "item_created" }
+              it_behaves_like "hook method"
+              it_behaves_like "attachments request hook method"
+
+              context "when the item's title has angle bracket characters" do
+                let(:resource) { build(:item, title: "1 on 1 qiitan <> kobito") }
+                it_behaves_like "attachments request hook method"
               end
 
-              context "when message is not delivered successfully" do
-                include_context "Delivery fail"
+              context "when the user's name has angle bracket characters" do
+                let(:user) { build(:user, name: "<Qiitan>") }
+                it_behaves_like "attachments request hook method"
+              end
+            end
 
-                it { expect { subject }.to raise_error(Qiita::Team::Services::DeliveryError) }
+            %w(became_coediting destroyed updated).each do |action_name|
+              describe "#item_#{action_name}" do
+                let(:event_name) { "item_#{action_name}" }
+                it_behaves_like "hook method"
+                it_behaves_like "text request hook method"
+
+                context "when the item's title has angle bracket characters" do
+                  let(:resource) { build(:item, title: "1 on 1 qiitan <> kobito") }
+                  it_behaves_like "text request hook method"
+                end
+
+                context "when the user's name has angle bracket characters" do
+                  let(:user) { build(:user, name: "<Qiitan>") }
+                  it_behaves_like "text request hook method"
+                end
+              end
+            end
+
+            describe "#item_comment_created" do
+              let(:event_name) { "item_comment_created" }
+              it_behaves_like "hook method"
+              it_behaves_like "attachments request hook method"
+
+              context "when the item's title has angle bracket characters" do
+                let(:resource) do
+                  build(:comment, item: build(:item, title: "1 on 1 qiitan <> kobito"))
+                end
+                it_behaves_like "attachments request hook method"
+              end
+
+              context "when the user's name has angle bracket characters" do
+                let(:user) { build(:user, name: "<Qiitan>") }
+                it_behaves_like "attachments request hook method"
+              end
+            end
+
+            %w(destroyed updated).each do |action_name|
+              describe "#item_comment_#{action_name}" do
+                let(:event_name) { "item_comment_#{action_name}" }
+                it_behaves_like "hook method"
+                it_behaves_like "text request hook method"
+
+                context "when the item's title has angle bracket characters" do
+                  let(:resource) do
+                    build(:comment, item: build(:item, title: "1 on 1 qiitan <> kobito"))
+                  end
+                  it_behaves_like "text request hook method"
+                end
+
+                context "when the user's name has angle bracket characters" do
+                  let(:user) { build(:user, name: "<Qiitan>") }
+                  it_behaves_like "text request hook method"
+                end
+              end
+            end
+
+            %w(activated archived created destroyed updated).each do |action_name|
+              describe "#project_#{action_name}" do
+                let(:event_name) { "project_#{action_name}" }
+                it_behaves_like "hook method"
+                it_behaves_like "text request hook method"
+
+                context "when the project's name has angle bracket characters" do
+                  let(:resource) { build(:project, name: "1 on 1 project qiitan <> kobito") }
+                  it_behaves_like "text request hook method"
+                end
+
+                context "when the user's name has angle bracket characters" do
+                  let(:user) { build(:user, name: "<Qiitan>") }
+                  it_behaves_like "text request hook method"
+                end
+              end
+            end
+
+            describe "#project_comment_created" do
+              let(:event_name) { "project_comment_created" }
+              it_behaves_like "hook method"
+              it_behaves_like "attachments request hook method"
+
+              context "when the project's name has angle bracket characters" do
+                let(:resource) do
+                  build(:project_comment,
+                        item: build(:project, name: "1 on 1 project qiitan <> kobito"))
+                end
+                it_behaves_like "attachments request hook method"
+              end
+
+              context "when the user's name has angle bracket characters" do
+                let(:user) { build(:user, name: "<Qiitan>") }
+                it_behaves_like "attachments request hook method"
+              end
+            end
+
+            %w(destroyed updated).each do |action_name|
+              describe "#project_comment_#{action_name}" do
+                let(:event_name) { "project_comment_#{action_name}" }
+                it_behaves_like "hook method"
+                it_behaves_like "text request hook method"
+
+                context "when the project's name has angle bracket characters" do
+                  let(:resource) do
+                    build(:project_comment,
+                          item: build(:project, name: "1 on 1 project qiitan <> kobito"))
+                  end
+                  it_behaves_like "text request hook method"
+                end
+
+                context "when the user's name has angle bracket characters" do
+                  let(:user) { build(:user, name: "<Qiitan>") }
+                  it_behaves_like "text request hook method"
+                end
+              end
+            end
+
+            %w(added removed).each do |action_name|
+              describe "#team_member_#{action_name}" do
+                let(:event_name) { "team_member_#{action_name}" }
+                it_behaves_like "hook method"
+                it_behaves_like "text request hook method"
+
+                context "when the team's name has angle bracket characters" do
+                  let(:team) do
+                    build(:team, name: "qiitan <> kobito team", url: "https://qiitan.qiita.com")
+                  end
+                  it_behaves_like "text request hook method"
+                end
+
+                context "when the user's name has angle bracket characters" do
+                  let(:user) { build(:user, name: "<Qiitan>") }
+                  it_behaves_like "text request hook method"
+                end
               end
             end
           end
