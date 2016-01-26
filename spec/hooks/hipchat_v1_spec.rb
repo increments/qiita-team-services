@@ -13,7 +13,7 @@ describe Qiita::Team::Services::Hooks::HipchatV1 do
     :project_created,
     :project_updated,
     :team_member_added,
-  ]
+  ].freeze
 
   shared_context "Delivery success" do
     before do
