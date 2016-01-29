@@ -23,5 +23,8 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Max: 30
 
-Style/TrailingComma:
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
