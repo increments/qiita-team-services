@@ -1,3 +1,9 @@
+AllCops:
+  TargetRubyVersion: 2.1
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
