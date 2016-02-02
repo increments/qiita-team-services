@@ -13,8 +13,6 @@ module Qiita::Team::Services
                                         message: :not_slack_url,
                                         allow_blank: true }
 
-      private
-
       # @note Implement Concerns::HttpClient#url.
       alias_method :url, :webhook_url
     end

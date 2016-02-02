@@ -9,7 +9,7 @@ module Qiita::Team::Services
         DEFAULT_HEADERS = {
           "Content-Type" => "application/json",
           "User-Agent" => "Qiita:Team",
-        }
+        }.freeze
         TIMEOUT = 5
 
         private
@@ -48,11 +48,8 @@ module Qiita::Team::Services
               req.headers[key] = value
             end
           end
-          if resp.success?
-            resp
-          else
-            fail DeliveryError
-          end
+          fail DeliveryError unless resp.success?
+          resp
         end
 
         # @return [Symbol] the request format type, `:json` or `:url_encoded`
