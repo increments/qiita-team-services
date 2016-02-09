@@ -15,6 +15,7 @@ module Qiita::Team::Services
 
         DEFAULT_ICON_URL = "https://cdn.qiita.com/media/qiita-team-slack-icon.png".freeze
         ICON_EMOJI_FORMAT = /\A:[^:]+:\z/
+        TEXT_BYTESIZE_MAX = 7500
 
         included do
           include HttpClient
@@ -54,7 +55,7 @@ module Qiita::Team::Services
               author_icon: event.user.profile_image_url,
               title: event.item.title,
               title_link: event.item.url,
-              text: Slacken.translate(event.item.rendered_body),
+              text: truncate(Slacken.translate(event.item.rendered_body), event.item.url),
               mrkdwn_in: ["text"],
             ],
           )
@@ -105,7 +106,7 @@ module Qiita::Team::Services
               author_name: "@#{event.user.url_name}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
-              text: Slacken.translate(event.comment.rendered_body),
+              text: truncate(Slacken.translate(event.comment.rendered_body), event.comment.url),
               mrkdwn_in: ["text"],
             ],
           )
@@ -141,7 +142,7 @@ module Qiita::Team::Services
               author_name: "@#{event.user.url_name}",
               author_link: event.user.url,
               author_icon: event.user.profile_image_url,
-              text: Slacken.translate(event.comment.rendered_body),
+              text: truncate(Slacken.translate(event.comment.rendered_body), event.comment.url),
               mrkdwn_in: ["text"],
             ],
           )
@@ -287,6 +288,18 @@ module Qiita::Team::Services
             ">" => "&gt;",
           }
           text.gsub(/[&<>]/, table_for_escape)
+        end
+
+        # Truncate the text to 7500 bytes.
+        # Now, Slack has a bug that we cannot send text larger than 8000 bytes.
+        #
+        # @param text [String]
+        # @param url [String]
+        # @return [String]
+        def truncate(text, url)
+          return text if text.bytesize <= TEXT_BYTESIZE_MAX
+          tail = "...\n<#{url}|Read more at Qiita:Team...>"
+          text.byteslice(0, TEXT_BYTESIZE_MAX - tail.bytesize).scrub("") + tail
         end
       end
     end

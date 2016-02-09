@@ -124,6 +124,12 @@ module Qiita::Team::Services
                 let(:user) { build(:user, name: "<Qiitan>") }
                 it_behaves_like "attachments request hook method"
               end
+
+              context "when the item's body has larger bytesize than the limit" do
+                let(:text_length) { Hooks::Concerns::Slack::TEXT_BYTESIZE_MAX / "あ".bytesize + 1 }
+                let(:resource) { build(:item, rendered_body: "あ" * text_length) }
+                it_behaves_like "attachments request hook method"
+              end
             end
 
             %w(became_coediting destroyed updated).each do |action_name|
@@ -158,6 +164,12 @@ module Qiita::Team::Services
 
               context "when the user's name has angle bracket characters" do
                 let(:user) { build(:user, name: "<Qiitan>") }
+                it_behaves_like "attachments request hook method"
+              end
+
+              context "when the comment's body has larger bytesize than the limit" do
+                let(:text_length) { Hooks::Concerns::Slack::TEXT_BYTESIZE_MAX / "あ".bytesize + 1 }
+                let(:resource) { build(:comment, rendered_body: "あ" * text_length) }
                 it_behaves_like "attachments request hook method"
               end
             end
@@ -215,6 +227,12 @@ module Qiita::Team::Services
 
               context "when the user's name has angle bracket characters" do
                 let(:user) { build(:user, name: "<Qiitan>") }
+                it_behaves_like "attachments request hook method"
+              end
+
+              context "when the comment's body has larger bytesize than the limit" do
+                let(:text_length) { Hooks::Concerns::Slack::TEXT_BYTESIZE_MAX / "あ".bytesize + 1 }
+                let(:resource) { build(:project_comment, rendered_body: "あ" * text_length) }
                 it_behaves_like "attachments request hook method"
               end
             end
