@@ -1,3 +1,8 @@
+# 0.3.7
+
+- [#15] Truncate Slack message text to 7500 bytes.
+- [#14] Update outdated rubocop config.
+
 # 0.3.6
 
 - [#13] Escape special characters for slack markup.
