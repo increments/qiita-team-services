@@ -1,0 +1,15 @@
+---
+engines:
+  duplication:
+    enabled: true
+    exclude_paths:
+    - spec
+    config:
+      languages:
+        ruby:
+          mass_threshold: 100 # Defualt: 40
+  rubocop:
+    enabled: true
+ratings:
+  paths:
+  - "**.rb"
