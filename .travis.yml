@@ -4,7 +4,8 @@ rvm:
 cache: bundler
 script:
 - bundle exec rake
-- bundle exec rake deploy-gh-pages
+after_success:
+- test "$(git rev-list HEAD...origin/master)" == "" && bundle exec rake deploy-gh-pages
 env:
   global:
   - GH_REF: github.com/increments/qiita-team-services.git
