@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Qiita::Team::Services
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Qiita/Team/Services.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Qiita.html" title="Qiita (module)">Qiita</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Team.html" title="Qiita::Team (module)">Team</a></span></span>
+     &raquo; 
+    <span class="title">Services</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Qiita::Team::Services
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/qiita_team_services.rb<span class="defines">,<br />
+  lib/qiita/team/services/hooks.rb,<br /> lib/qiita/team/services/engine.rb,<br /> lib/qiita/team/services/errors.rb,<br /> lib/qiita/team/services/events.rb,<br /> lib/qiita/team/services/version.rb,<br /> lib/qiita/team/services/hooks/base.rb,<br /> lib/qiita/team/services/properties.rb,<br /> lib/qiita/team/services/events/base.rb,<br /> lib/qiita/team/services/hooks/webhook.rb,<br /> lib/qiita/team/services/hooks/slack_v1.rb,<br /> lib/qiita/team/services/hooks/slack_v2.rb,<br /> lib/qiita/team/services/properties/base.rb,<br /> lib/qiita/team/services/hooks/hipchat_v1.rb,<br /> lib/qiita/team/services/hooks/chatwork_v1.rb,<br /> lib/qiita/team/services/events/item_created.rb,<br /> lib/qiita/team/services/events/item_updated.rb,<br /> lib/qiita/team/services/hooks/concerns/slack.rb,<br /> lib/qiita/team/services/events/item_destroyed.rb,<br /> lib/qiita/team/services/events/project_created.rb,<br /> lib/qiita/team/services/events/project_updated.rb,<br /> lib/qiita/team/services/hooks/concerns/service.rb,<br /> lib/qiita/team/services/events/project_archived.rb,<br /> lib/qiita/team/services/events/project_activated.rb,<br /> lib/qiita/team/services/events/project_destroyed.rb,<br /> lib/qiita/team/services/events/team_member_added.rb,<br /> lib/qiita/team/services/events/team_member_removed.rb,<br /> lib/qiita/team/services/hooks/concerns/http_client.rb,<br /> lib/qiita/team/services/hooks/concerns/persistable.rb,<br /> lib/qiita/team/services/properties/string_property.rb,<br /> lib/qiita/team/services/events/item_comment_created.rb,<br /> lib/qiita/team/services/events/item_comment_updated.rb,<br /> lib/qiita/team/services/properties/boolean_property.rb,<br /> lib/qiita/team/services/events/item_became_coediting.rb,<br /> lib/qiita/team/services/events/item_comment_destroyed.rb,<br /> lib/qiita/team/services/events/project_comment_created.rb,<br /> lib/qiita/team/services/events/project_comment_updated.rb,<br /> lib/qiita/team/services/hooks/concerns/event_handlable.rb,<br /> lib/qiita/team/services/events/project_comment_destroyed.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Services/Events.html" title="Qiita::Team::Services::Events (module)">Events</a></span>, <span class='object_link'><a href="Services/Hooks.html" title="Qiita::Team::Services::Hooks (module)">Hooks</a></span>, <span class='object_link'><a href="Services/Properties.html" title="Qiita::Team::Services::Properties (module)">Properties</a></span>
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Services/DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">DeliveryError</a></span>, <span class='object_link'><a href="Services/Engine.html" title="Qiita::Team::Services::Engine (class)">Engine</a></span>, <span class='object_link'><a href="Services/Error.html" title="Qiita::Team::Services::Error (class)">Error</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="VERSION-constant" class="">VERSION =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.3.8</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Mar 30 04:01:45 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.3).
+</div>
+
+  </body>
+</html>

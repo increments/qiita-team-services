@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Qiita::Team::Services::Hooks
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!Qiita/Team/Services/Hooks.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (H)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Qiita.html" title="Qiita (module)">Qiita</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Team.html" title="Qiita::Team (module)">Team</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Services.html" title="Qiita::Team::Services (module)">Services</a></span></span>
+     &raquo; 
+    <span class="title">Hooks</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Qiita::Team::Services::Hooks
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/qiita/team/services/hooks.rb<span class="defines">,<br />
+  lib/qiita/team/services/hooks/base.rb,<br /> lib/qiita/team/services/hooks/webhook.rb,<br /> lib/qiita/team/services/hooks/slack_v1.rb,<br /> lib/qiita/team/services/hooks/slack_v2.rb,<br /> lib/qiita/team/services/hooks/hipchat_v1.rb,<br /> lib/qiita/team/services/hooks/chatwork_v1.rb,<br /> lib/qiita/team/services/hooks/concerns/slack.rb,<br /> lib/qiita/team/services/hooks/concerns/service.rb,<br /> lib/qiita/team/services/hooks/concerns/http_client.rb,<br /> lib/qiita/team/services/hooks/concerns/persistable.rb,<br /> lib/qiita/team/services/hooks/concerns/event_handlable.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Hooks/Concerns.html" title="Qiita::Team::Services::Hooks::Concerns (module)">Concerns</a></span>
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Hooks/Base.html" title="Qiita::Team::Services::Hooks::Base (class)">Base</a></span>, <span class='object_link'><a href="Hooks/ChatworkV1.html" title="Qiita::Team::Services::Hooks::ChatworkV1 (class)">ChatworkV1</a></span>, <span class='object_link'><a href="Hooks/HipchatV1.html" title="Qiita::Team::Services::Hooks::HipchatV1 (class)">HipchatV1</a></span>, <span class='object_link'><a href="Hooks/SlackV1.html" title="Qiita::Team::Services::Hooks::SlackV1 (class)">SlackV1</a></span>, <span class='object_link'><a href="Hooks/SlackV2.html" title="Qiita::Team::Services::Hooks::SlackV2 (class)">SlackV2</a></span>, <span class='object_link'><a href="Hooks/Webhook.html" title="Qiita::Team::Services::Hooks::Webhook (class)">Webhook</a></span>
+    
+  
+</p>
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#active_hooks-class_method" title="active_hooks (class method)">+ (Array&lt;Qiita::Team::Services::Hooks::Base&gt;) <strong>active_hooks</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#all_hook_types-class_method" title="all_hook_types (class method)">+ (Array&lt;String&gt;) <strong>all_hook_types</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#all_hooks-class_method" title="all_hooks (class method)">+ (Array&lt;Qiita::Team::Services::Hooks::Base&gt;) <strong>all_hooks</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deprecated_hooks-class_method" title="deprecated_hooks (class method)">+ (Array&lt;Qiita::Team::Services::Hooks::Base&gt;) <strong>deprecated_hooks</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="active_hooks-class_method">
+  
+    + (<tt>Array&lt;<span class='object_link'><a href="Hooks/Base.html" title="Qiita::Team::Services::Hooks::Base (class)">Qiita::Team::Services::Hooks::Base</a></span>&gt;</tt>) <strong>active_hooks</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Hooks/Base.html" title="Qiita::Team::Services::Hooks::Base (class)">Qiita::Team::Services::Hooks::Base</a></span>&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks.rb', line 10</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_active_hooks'>active_hooks</span>
+  <span class='id identifier rubyid_all_hooks'>all_hooks</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:deprecated?</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="all_hook_types-class_method">
+  
+    + (<tt>Array&lt;String&gt;</tt>) <strong>all_hook_types</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks.rb', line 20</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_all_hook_types'>all_hook_types</span>
+  <span class='id identifier rubyid_all_hooks'>all_hooks</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:hook_type</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="all_hooks-class_method">
+  
+    + (<tt>Array&lt;<span class='object_link'><a href="Hooks/Base.html" title="Qiita::Team::Services::Hooks::Base (class)">Qiita::Team::Services::Hooks::Base</a></span>&gt;</tt>) <strong>all_hooks</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Hooks/Base.html" title="Qiita::Team::Services::Hooks::Base (class)">Qiita::Team::Services::Hooks::Base</a></span>&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+5
+6
+7</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks.rb', line 5</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_all_hooks'>all_hooks</span>
+  <span class='ivar'>@all_hooks</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="deprecated_hooks-class_method">
+  
+    + (<tt>Array&lt;<span class='object_link'><a href="Hooks/Base.html" title="Qiita::Team::Services::Hooks::Base (class)">Qiita::Team::Services::Hooks::Base</a></span>&gt;</tt>) <strong>deprecated_hooks</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Hooks/Base.html" title="Qiita::Team::Services::Hooks::Base (class)">Qiita::Team::Services::Hooks::Base</a></span>&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deprecated_hooks'>deprecated_hooks</span>
+  <span class='id identifier rubyid_all_hooks'>all_hooks</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:deprecated?</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Mar 30 04:01:45 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.3).
+</div>
+
+  </body>
+</html>

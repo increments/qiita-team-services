@@ -1,0 +1,1888 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Qiita::Team::Services::Hooks::Concerns::Slack
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../../../';
+  framesUrl = "../../../../../frames.html#!Qiita/Team/Services/Hooks/Concerns/Slack.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../../../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../../../Qiita.html" title="Qiita (module)">Qiita</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../../../Team.html" title="Qiita::Team (module)">Team</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../../Services.html" title="Qiita::Team::Services (module)">Services</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Hooks.html" title="Qiita::Team::Services::Hooks (module)">Hooks</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Concerns.html" title="Qiita::Team::Services::Hooks::Concerns (module)">Concerns</a></span></span>
+     &raquo; 
+    <span class="title">Slack</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Qiita::Team::Services::Hooks::Concerns::Slack
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+      <dt class="r1">Extended by:</dt>
+      <dd class="r1">ActiveSupport::Concern</dd>
+      
+    
+  
+    
+  
+  
+    <dt class="r2">Included in:</dt>
+    <dd class="r2"><span class='object_link'><a href="../SlackV1.html" title="Qiita::Team::Services::Hooks::SlackV1 (class)">SlackV1</a></span>, <span class='object_link'><a href="../SlackV2.html" title="Qiita::Team::Services::Hooks::SlackV2 (class)">SlackV2</a></span></dd>
+    
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/qiita/team/services/hooks/concerns/slack.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Send richly-formatted messages to Slack. Override <span class='object_link'>HttpClient#url</span> to
+implement HttpClient.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://api.slack.com/docs/attachments" target="_parent" title="https://api.slack.com/docs/attachments">https://api.slack.com/docs/attachments</a></li>
+    
+  </ul>
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="DEFAULT_ICON_URL-constant" class="">DEFAULT_ICON_URL =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>https://cdn.qiita.com/media/qiita-team-slack-icon.png</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+        <dt id="ICON_EMOJI_FORMAT-constant" class="">ICON_EMOJI_FORMAT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A:[^:]+:\z</span><span class='regexp_end'>/</span></span></pre></dd>
+      
+        <dt id="TEXT_BYTESIZE_MAX-constant" class="">TEXT_BYTESIZE_MAX =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>7500</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#item_became_coediting-instance_method" title="#item_became_coediting (instance method)">- (void) <strong>item_became_coediting</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#item_comment_created-instance_method" title="#item_comment_created (instance method)">- (void) <strong>item_comment_created</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#item_comment_destroyed-instance_method" title="#item_comment_destroyed (instance method)">- (void) <strong>item_comment_destroyed</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#item_comment_updated-instance_method" title="#item_comment_updated (instance method)">- (void) <strong>item_comment_updated</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#item_created-instance_method" title="#item_created (instance method)">- (void) <strong>item_created</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#item_destroyed-instance_method" title="#item_destroyed (instance method)">- (void) <strong>item_destroyed</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#item_updated-instance_method" title="#item_updated (instance method)">- (void) <strong>item_updated</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ping-instance_method" title="#ping (instance method)">- (void) <strong>ping</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project_activated-instance_method" title="#project_activated (instance method)">- (void) <strong>project_activated</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project_archived-instance_method" title="#project_archived (instance method)">- (void) <strong>project_archived</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project_comment_created-instance_method" title="#project_comment_created (instance method)">- (void) <strong>project_comment_created</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project_comment_destroyed-instance_method" title="#project_comment_destroyed (instance method)">- (void) <strong>project_comment_destroyed</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project_comment_updated-instance_method" title="#project_comment_updated (instance method)">- (void) <strong>project_comment_updated</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project_created-instance_method" title="#project_created (instance method)">- (void) <strong>project_created</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project_destroyed-instance_method" title="#project_destroyed (instance method)">- (void) <strong>project_destroyed</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#project_updated-instance_method" title="#project_updated (instance method)">- (void) <strong>project_updated</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#team_member_added-instance_method" title="#team_member_added (instance method)">- (void) <strong>team_member_added</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#team_member_removed-instance_method" title="#team_member_removed (instance method)">- (void) <strong>team_member_removed</strong>(event) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="item_became_coediting-instance_method">
+  
+    - (<tt>void</tt>) <strong>item_became_coediting</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ItemBecameCoediting.html" title="Qiita::Team::Services::Events::ItemBecameCoediting (class)">Qiita::Team::Services::Events::ItemBecameCoediting</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_item_became_coediting'>item_became_coediting</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> changed </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item_link'>item_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> to coedit mode</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="item_comment_created-instance_method">
+  
+    - (<tt>void</tt>) <strong>item_comment_created</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ItemCommentCreated.html" title="Qiita::Team::Services::Events::ItemCommentCreated (class)">Qiita::Team::Services::Events::ItemCommentCreated</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_item_comment_created'>item_comment_created</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_fallback'>fallback</span> <span class='op'>=</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_coediting?'>coediting?</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>New </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_comment_link'>comment_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_comment'>comment</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item_link'>item_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>New </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_comment_link'>comment_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_comment'>comment</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s </span><span class='tstring_end'>&quot;</span></span> \
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item_link'>item_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>attachments:</span> <span class='lbracket'>[</span>
+      <span class='label'>fallback:</span> <span class='id identifier rubyid_fallback'>fallback</span><span class='comma'>,</span>
+      <span class='label'>pretext:</span> <span class='id identifier rubyid_fallback'>fallback</span><span class='comma'>,</span>
+      <span class='label'>author_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_url_name'>url_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='label'>author_link:</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span>
+      <span class='label'>author_icon:</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_profile_image_url'>profile_image_url</span><span class='comma'>,</span>
+      <span class='label'>text:</span> <span class='id identifier rubyid_truncate'>truncate</span><span class='lparen'>(</span><span class='const'>Slacken</span><span class='period'>.</span><span class='id identifier rubyid_translate'>translate</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_comment'>comment</span><span class='period'>.</span><span class='id identifier rubyid_rendered_body'>rendered_body</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_comment'>comment</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='label'>mrkdwn_in:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="item_comment_destroyed-instance_method">
+  
+    - (<tt>void</tt>) <strong>item_comment_destroyed</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ItemCommentDestroyed.html" title="Qiita::Team::Services::Events::ItemCommentDestroyed (class)">Qiita::Team::Services::Events::ItemCommentDestroyed</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+127
+128
+129
+130
+131</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 127</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_item_comment_destroyed'>item_comment_destroyed</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> deleted a comment on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item_link'>item_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="item_comment_updated-instance_method">
+  
+    - (<tt>void</tt>) <strong>item_comment_updated</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ItemCommentUpdated.html" title="Qiita::Team::Services::Events::ItemCommentUpdated (class)">Qiita::Team::Services::Events::ItemCommentUpdated</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+118
+119
+120
+121
+122</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 118</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_item_comment_updated'>item_comment_updated</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> updated a </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_comment_link'>comment_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_comment'>comment</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_text'>text</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item_link'>item_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span><span class='label'>text:</span> <span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="item_created-instance_method">
+  
+    - (<tt>void</tt>) <strong>item_created</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ItemCreated.html" title="Qiita::Team::Services::Events::ItemCreated (class)">Qiita::Team::Services::Events::ItemCreated</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_item_created'>item_created</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_fallback'>fallback</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> created a new post</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>attachments:</span> <span class='lbracket'>[</span>
+      <span class='label'>fallback:</span> <span class='id identifier rubyid_fallback'>fallback</span><span class='comma'>,</span>
+      <span class='label'>pretext:</span> <span class='id identifier rubyid_fallback'>fallback</span><span class='comma'>,</span>
+      <span class='label'>author_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_url_name'>url_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='label'>author_link:</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span>
+      <span class='label'>author_icon:</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_profile_image_url'>profile_image_url</span><span class='comma'>,</span>
+      <span class='label'>title:</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span><span class='comma'>,</span>
+      <span class='label'>title_link:</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span>
+      <span class='label'>text:</span> <span class='id identifier rubyid_truncate'>truncate</span><span class='lparen'>(</span><span class='const'>Slacken</span><span class='period'>.</span><span class='id identifier rubyid_translate'>translate</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_rendered_body'>rendered_body</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='label'>mrkdwn_in:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="item_destroyed-instance_method">
+  
+    - (<tt>void</tt>) <strong>item_destroyed</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ItemDestroyed.html" title="Qiita::Team::Services::Events::ItemDestroyed (class)">Qiita::Team::Services::Events::ItemDestroyed</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87
+88
+89</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_item_destroyed'>item_destroyed</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> deleted </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="item_updated-instance_method">
+  
+    - (<tt>void</tt>) <strong>item_updated</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ItemUpdated.html" title="Qiita::Team::Services::Events::ItemUpdated (class)">Qiita::Team::Services::Events::ItemUpdated</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67
+68
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_item_updated'>item_updated</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> updated </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item_link'>item_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ping-instance_method">
+  
+    - (<tt>void</tt>) <strong>ping</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ping'>ping</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span><span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Test message sent from Qiita:Team</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='const'>DeliveryError</span>
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="project_activated-instance_method">
+  
+    - (<tt>void</tt>) <strong>project_activated</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ProjectActivated.html" title="Qiita::Team::Services::Events::ProjectActivated (class)">Qiita::Team::Services::Events::ProjectActivated</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+226
+227
+228
+229
+230</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 226</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project_activated'>project_activated</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> activated </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project_link'>project_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> project</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="project_archived-instance_method">
+  
+    - (<tt>void</tt>) <strong>project_archived</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ProjectArchived.html" title="Qiita::Team::Services::Events::ProjectArchived (class)">Qiita::Team::Services::Events::ProjectArchived</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+217
+218
+219
+220
+221</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 217</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project_archived'>project_archived</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> archived </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project_link'>project_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> project</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="project_comment_created-instance_method">
+  
+    - (<tt>void</tt>) <strong>project_comment_created</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ProjectCommentCreated.html" title="Qiita::Team::Services::Events::ProjectCommentCreated (class)">Qiita::Team::Services::Events::ProjectCommentCreated</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 136</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project_comment_created'>project_comment_created</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_fallback'>fallback</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>New </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_comment_link'>comment_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_comment'>comment</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project_link'>project_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>attachments:</span> <span class='lbracket'>[</span>
+      <span class='label'>fallback:</span> <span class='id identifier rubyid_fallback'>fallback</span><span class='comma'>,</span>
+      <span class='label'>pretext:</span> <span class='id identifier rubyid_fallback'>fallback</span><span class='comma'>,</span>
+      <span class='label'>author_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_url_name'>url_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='label'>author_link:</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span>
+      <span class='label'>author_icon:</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_profile_image_url'>profile_image_url</span><span class='comma'>,</span>
+      <span class='label'>text:</span> <span class='id identifier rubyid_truncate'>truncate</span><span class='lparen'>(</span><span class='const'>Slacken</span><span class='period'>.</span><span class='id identifier rubyid_translate'>translate</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_comment'>comment</span><span class='period'>.</span><span class='id identifier rubyid_rendered_body'>rendered_body</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_comment'>comment</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='label'>mrkdwn_in:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="project_comment_destroyed-instance_method">
+  
+    - (<tt>void</tt>) <strong>project_comment_destroyed</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ProjectCommentDestroyed.html" title="Qiita::Team::Services::Events::ProjectCommentDestroyed (class)">Qiita::Team::Services::Events::ProjectCommentDestroyed</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+163
+164
+165
+166
+167</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 163</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project_comment_destroyed'>project_comment_destroyed</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> deleted a comemnt on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project_link'>project_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="project_comment_updated-instance_method">
+  
+    - (<tt>void</tt>) <strong>project_comment_updated</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ProjectCommentUpdated.html" title="Qiita::Team::Services::Events::ProjectCommentUpdated (class)">Qiita::Team::Services::Events::ProjectCommentUpdated</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+154
+155
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 154</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project_comment_updated'>project_comment_updated</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> updated a </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_comment_link'>comment_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_comment'>comment</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_text'>text</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project_link'>project_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span><span class='label'>text:</span> <span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="project_created-instance_method">
+  
+    - (<tt>void</tt>) <strong>project_created</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ProjectCreated.html" title="Qiita::Team::Services::Events::ProjectCreated (class)">Qiita::Team::Services::Events::ProjectCreated</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+190
+191
+192
+193
+194</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 190</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project_created'>project_created</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> created </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project_link'>project_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> project</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="project_destroyed-instance_method">
+  
+    - (<tt>void</tt>) <strong>project_destroyed</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ProjectDestroyed.html" title="Qiita::Team::Services::Events::ProjectDestroyed (class)">Qiita::Team::Services::Events::ProjectDestroyed</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+208
+209
+210
+211
+212</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 208</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project_destroyed'>project_destroyed</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> deleted </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project_link'>project_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> project</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="project_updated-instance_method">
+  
+    - (<tt>void</tt>) <strong>project_updated</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Events/ProjectUpdated.html" title="Qiita::Team::Services::Events::ProjectUpdated (class)">Qiita::Team::Services::Events::ProjectUpdated</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+199
+200
+201
+202
+203</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 199</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_project_updated'>project_updated</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> updated </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_project_link'>project_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> project</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="team_member_added-instance_method">
+  
+    - (<tt>void</tt>) <strong>team_member_added</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt>Qiita::Team::Services::Events::MemberAdded</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+172
+173
+174
+175
+176</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 172</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_team_member_added'>team_member_added</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_link'>user_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> was added to the </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_team_link'>team_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_team'>team</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> team</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="team_member_removed-instance_method">
+  
+    - (<tt>void</tt>) <strong>team_member_removed</strong>(event) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p>
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>event</span>
+      
+      
+        <span class='type'>(<tt>Qiita::Team::Services::Events::MemberRemoved</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../DeliveryError.html" title="Qiita::Team::Services::DeliveryError (class)">Qiita::Team::Services::DeliveryError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+181
+182
+183
+184
+185</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/qiita/team/services/hooks/concerns/slack.rb', line 181</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_team_member_removed'>team_member_removed</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_send_message'>send_message</span><span class='lparen'>(</span>
+    <span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_member'>member</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> was removed from the </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_team_link'>team_link</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_team'>team</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> team</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Mar 30 04:01:45 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.2.3).
+</div>
+
+  </body>
+</html>
