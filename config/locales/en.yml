@@ -9,7 +9,7 @@ en:
               Qiita:Team icon is used by default.
             webhook_url_help_block_html:
               You can add incoming webhooks integration to your slack channels at
-              <a href="https://slack.com/integrations" target="_blank">https://slack.com/integrations</a>.
+              <a href="https://slack.com/apps/A0F7XDUAZ-incoming-webhooks" target="_blank">https://slack.com/apps/A0F7XDUAZ-incoming-webhooks</a>.
         hooks:
           chatwork_v1:
             room_id: Room ID
