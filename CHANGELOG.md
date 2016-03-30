@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 This change log adheres to [keepachangelog.com](http://keepachangelog.com).
 
 ## [Unreleased]
+
+## [0.3.8] - 2016-03-30
 ### Fixed
 - [#16] Update URL for Slack incoming webhooks
 
@@ -49,7 +51,8 @@ This change log adheres to [keepachangelog.com](http://keepachangelog.com).
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/yuku-t/textcomplete/compare/v0.3.7...HEAD
+[Unreleased]: https://github.com/yuku-t/textcomplete/compare/v0.3.8...HEAD
+[0.3.8]: https://github.com/yuku-t/textcomplete/compare/v0.3.7...v0.3.8
 [0.3.7]: https://github.com/yuku-t/textcomplete/compare/v0.3.6...v0.3.7
 [0.3.6]: https://github.com/yuku-t/textcomplete/compare/v0.3.5...v0.3.6
 [0.3.5]: https://github.com/yuku-t/textcomplete/compare/v0.3.4...v0.3.5
